@@ -78,40 +78,6 @@
       margin: 0 auto 20px auto;
     }
 
-    /* LIEN COURT DISCRET */
-    .short-link-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(40, 52, 70, 0.6);
-      border: 1px solid rgba(88, 166, 255, 0.4);
-      padding: 8px 18px;
-      border-radius: 30px;
-      margin-bottom: 30px;
-      font-size: 0.9rem;
-    }
-    .short-link-box a {
-      color: #58a6ff;
-      text-decoration: none;
-      font-weight: 800;
-    }
-    .short-link-box a:hover {
-      text-decoration: underline;
-    }
-    .btn-copy-link {
-      background: #238636;
-      color: white;
-      border: none;
-      padding: 4px 12px;
-      border-radius: 14px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-copy-link:hover {
-      background: #2ea043;
-    }
 
     .global-badges {
       display: flex;
@@ -459,12 +425,6 @@
         Deux versions distinctes conçues sur mesure : le logiciel pour votre PC et l'application pour votre téléphone.
       </p>
 
-      <!-- LIEN COURT DISCRET -->
-      <div class="short-link-box">
-        <span>🔗 Lien court discret :</span>
-        <a href="https://tinyurl.com/dbd-overlay" target="_blank">tinyurl.com/dbd-overlay</a>
-        <button class="btn-copy-link" onclick="copyShortLink()">Copier</button>
-      </div>
 
       <div class="global-badges">
         <span class="badge">🗺️ 43 Cartes HD en Français</span>
@@ -613,11 +573,6 @@
   </div>
 
   <script>
-    function copyShortLink() {
-      navigator.clipboard.writeText("https://tinyurl.com/dbd-overlay").then(() => {
-        alert("📋 Lien discret copié : https://tinyurl.com/dbd-overlay !");
-      });
-    }
 
     function openLocationModal(e, url, filename) {
       e.preventDefault();
