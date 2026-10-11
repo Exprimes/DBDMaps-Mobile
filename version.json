@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
-  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.0/DBDMaps.exe",
-  "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.0/DBDMaps.apk",
-  "changelog": "Lobby Manager bidirectionnel, 43 cartes HD et compteur de cartes"
+    "pc_download_url":  "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.0/DBDMaps.exe",
+    "changelog":  "Vérificateur de mise à jour mobile intégré, Lobby Manager bidirectionnel et 43 cartes HD",
+    "version":  "1.0.1",
+    "apk_download_url":  "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.0/DBDMaps.apk"
 }
