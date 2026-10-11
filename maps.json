@@ -1,217 +1,217 @@
-﻿[
+[
     {
-        "name":  "Abattoir Putride",
         "creator":  "Exprimes",
+        "name":  "Abattoir Putride",
         "src":  "maps/Exprimes/Abattoir Putride.png"
     },
     {
-        "name":  "Aire de Corbeaux",
         "creator":  "Exprimes",
+        "name":  "Aire de Corbeaux",
         "src":  "maps/Exprimes/Aire de Corbeaux.png"
     },
     {
-        "name":  "Atelier Misérable",
         "creator":  "Exprimes",
+        "name":  "Atelier Misérable",
         "src":  "maps/Exprimes/Atelier Misérable.png"
     },
     {
-        "name":  "Cabane du Sang",
         "creator":  "Exprimes",
+        "name":  "Cabane du Sang",
         "src":  "maps/Exprimes/Cabane du Sang.png"
     },
     {
-        "name":  "Cellier Sinistre",
         "creator":  "Exprimes",
+        "name":  "Cellier Sinistre",
         "src":  "maps/Exprimes/Cellier Sinistre.png"
     },
     {
-        "name":  "Centre de Traitement Léry",
         "creator":  "Exprimes",
+        "name":  "Centre de Traitement Léry",
         "src":  "maps/Exprimes/Centre de Traitement Léry.png"
     },
     {
-        "name":  "Champs Pourris",
         "creator":  "Exprimes",
+        "name":  "Champs Pourris",
         "src":  "maps/Exprimes/Champs Pourris.png"
     },
     {
-        "name":  "Chapelle du Père Campbell",
         "creator":  "Exprimes",
+        "name":  "Chapelle du Père Campbell",
         "src":  "maps/Exprimes/Chapelle du Père Campbell.png"
     },
     {
-        "name":  "Complexe Souterrain Hawkins",
         "creator":  "Exprimes",
+        "name":  "Complexe Souterrain Hawkins",
         "src":  "maps/Exprimes/Complexe Souterrain Hawkins.png"
     },
     {
-        "name":  "Dernière Demeure d\u0027Azarov",
         "creator":  "Exprimes",
+        "name":  "Dernière Demeure d\u0027Azarov",
         "src":  "maps/Exprimes/Dernière Demeure d\u0027Azarov.png"
     },
     {
-        "name":  "École Maternelle de Badham",
         "creator":  "Exprimes",
+        "name":  "École Maternelle de Badham",
         "src":  "maps/Exprimes/École Maternelle de Badham.png"
     },
     {
-        "name":  "École Primaire Midwich",
         "creator":  "Exprimes",
+        "name":  "École Primaire Midwich",
         "src":  "maps/Exprimes/École Primaire Midwich.png"
     },
     {
-        "name":  "Entrepôt de Charbon",
         "creator":  "Exprimes",
+        "name":  "Entrepôt de Charbon",
         "src":  "maps/Exprimes/Entrepôt de Charbon.png"
     },
     {
-        "name":  "Entrepôt Grondant",
         "creator":  "Exprimes",
+        "name":  "Entrepôt Grondant",
         "src":  "maps/Exprimes/Entrepôt Grondant.png"
     },
     {
-        "name":  "Épave du Nostromo",
         "creator":  "Exprimes",
+        "name":  "Épave du Nostromo",
         "src":  "maps/Exprimes/Épave du Nostromo.png"
     },
     {
-        "name":  "Étable en Ruine",
         "creator":  "Exprimes",
+        "name":  "Étable en Ruine",
         "src":  "maps/Exprimes/Étable en Ruine.png"
     },
     {
-        "name":  "Fonderie de Souffrance",
         "creator":  "Exprimes",
+        "name":  "Fonderie de Souffrance",
         "src":  "maps/Exprimes/Fonderie de Souffrance.png"
     },
     {
-        "name":  "Forêt Profonde",
         "creator":  "Exprimes",
+        "name":  "Forêt Profonde",
         "src":  "maps/Exprimes/Forêt Profonde.png"
     },
     {
-        "name":  "Freddy Fazbear\u0027s Pizza",
         "creator":  "Exprimes",
+        "name":  "Freddy Fazbear\u0027s Pizza",
         "src":  "maps/Exprimes/Freddy Fazbear\u0027s Pizza.png"
     },
     {
-        "name":  "Gas Haven",
         "creator":  "Exprimes",
+        "name":  "Gas Haven",
         "src":  "maps/Exprimes/Gas Haven.png"
     },
     {
-        "name":  "Illusion du Farceur",
         "creator":  "Exprimes",
+        "name":  "Illusion du Farceur",
         "src":  "maps/Exprimes/Illusion du Farceur.png"
     },
     {
-        "name":  "Jardin de la Joie",
         "creator":  "Exprimes",
+        "name":  "Jardin de la Joie",
         "src":  "maps/Exprimes/Jardin de la Joie.png"
     },
     {
-        "name":  "La Maison Maternelle",
         "creator":  "Exprimes",
+        "name":  "La Maison Maternelle",
         "src":  "maps/Exprimes/La Maison Maternelle.png"
     },
     {
-        "name":  "La Place Dévastée",
         "creator":  "Exprimes",
+        "name":  "La Place Dévastée",
         "src":  "maps/Exprimes/La Place Dévastée.png"
     },
     {
-        "name":  "Le Jeu",
         "creator":  "Exprimes",
+        "name":  "Le Jeu",
         "src":  "maps/Exprimes/Le Jeu.png"
     },
     {
-        "name":  "Le Pâle Rose",
         "creator":  "Exprimes",
+        "name":  "Le Pâle Rose",
         "src":  "maps/Exprimes/Le Pâle Rose.png"
     },
     {
-        "name":  "Le Temple de Purgation",
         "creator":  "Exprimes",
+        "name":  "Le Temple de Purgation",
         "src":  "maps/Exprimes/Le Temple de Purgation.png"
     },
     {
-        "name":  "Mine du Lac d\u0027Ormond",
         "creator":  "Exprimes",
+        "name":  "Mine du Lac d\u0027Ormond",
         "src":  "maps/Exprimes/Mine du Lac d\u0027Ormond.png"
     },
     {
-        "name":  "Place de Greenville",
         "creator":  "Exprimes",
+        "name":  "Place de Greenville",
         "src":  "maps/Exprimes/Place de Greenville.png"
     },
     {
-        "name":  "Puits d\u0027Asphyxie",
         "creator":  "Exprimes",
+        "name":  "Puits d\u0027Asphyxie",
         "src":  "maps/Exprimes/Puits d\u0027Asphyxie.png"
     },
     {
-        "name":  "Refuge Perdu",
         "creator":  "Exprimes",
+        "name":  "Refuge Perdu",
         "src":  "maps/Exprimes/Refuge Perdu.png"
     },
     {
-        "name":  "Résidence Familiale",
         "creator":  "Exprimes",
+        "name":  "Résidence Familiale",
         "src":  "maps/Exprimes/Résidence Familiale.png"
     },
     {
-        "name":  "RPD East",
         "creator":  "Exprimes",
+        "name":  "RPD East",
         "src":  "maps/Exprimes/RPD East.png"
     },
     {
-        "name":  "RPD West",
         "creator":  "Exprimes",
+        "name":  "RPD West",
         "src":  "maps/Exprimes/RPD West.png"
     },
     {
-        "name":  "Ruines Oubliées",
         "creator":  "Exprimes",
+        "name":  "Ruines Oubliées",
         "src":  "maps/Exprimes/Ruines Oubliées.png"
     },
     {
-        "name":  "Sables Morts",
         "creator":  "Exprimes",
+        "name":  "Sables Morts",
         "src":  "maps/Exprimes/Sables Morts.png"
     },
     {
-        "name":  "Salle des Aliénés",
         "creator":  "Exprimes",
+        "name":  "Salle des Aliénés",
         "src":  "maps/Exprimes/Salle des Aliénés.png"
     },
     {
-        "name":  "Saloon de Dead Dawg",
         "creator":  "Exprimes",
+        "name":  "Saloon de Dead Dawg",
         "src":  "maps/Exprimes/Saloon de Dead Dawg.png"
     },
     {
-        "name":  "Sanctuaire du Courroux",
         "creator":  "Exprimes",
+        "name":  "Sanctuaire du Courroux",
         "src":  "maps/Exprimes/Sanctuaire du Courroux.png"
     },
     {
-        "name":  "Site d\u0027Atterrissage de Toba",
         "creator":  "Exprimes",
+        "name":  "Site d\u0027Atterrissage de Toba",
         "src":  "maps/Exprimes/Site d\u0027Atterrissage de Toba.png"
     },
     {
-        "name":  "Station du Mont Ormond",
         "creator":  "Exprimes",
+        "name":  "Station du Mont Ormond",
         "src":  "maps/Exprimes/Station du Mont Ormond.png"
     },
     {
-        "name":  "Terrain de la Casse",
         "creator":  "Exprimes",
+        "name":  "Terrain de la Casse",
         "src":  "maps/Exprimes/Terrain de la Casse.png"
     },
     {
-        "name":  "Vallon des Tourments",
         "creator":  "Exprimes",
+        "name":  "Vallon des Tourments",
         "src":  "maps/Exprimes/Vallon des Tourments.png"
     }
 ]
