@@ -3,441 +3,445 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DBD MAP • Téléchargement Officiel (PC & Mobile)</title>
+  <title>DBD MAP • Téléchargement PC & Téléphone (By Exprimes)</title>
   <link rel="icon" type="image/png" href="app_icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090d16;
-      --card-bg: rgba(22, 27, 34, 0.85);
-      --border: #30363d;
-      --primary: #e63946;
-      --primary-hover: #ff4d5a;
-      --blue: #58a6ff;
-      --blue-hover: #79b8ff;
-      --green: #2ea043;
-      --green-hover: #3fb950;
-      --text: #f0f6fc;
-      --text-muted: #8b949e;
+      --bg: #0b0e14;
+      --card-pc: #111827;
+      --card-mobile: #0f1f18;
+      --border-pc: #1e3a8a;
+      --border-mobile: #065f46;
+      --accent-pc: #3b82f6;
+      --accent-mobile: #10b981;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg);
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(230, 57, 70, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(88, 166, 255, 0.1) 0%, transparent 45%);
-      background-attachment: fixed;
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 40%);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      line-height: 1.5;
+      padding: 0 16px;
     }
-    .container {
+    .wrapper {
       width: 100%;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 24px;
     }
+    
+    /* EN-TÊTE */
     header {
-      padding: 40px 0 20px 0;
       text-align: center;
+      padding: 40px 0 20px 0;
     }
-    .logo-badge {
+    .brand-pill {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: rgba(33, 38, 45, 0.7);
-      border: 1px solid var(--border);
-      padding: 8px 18px 8px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 20px;
       border-radius: 40px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       backdrop-filter: blur(8px);
     }
-    .logo-badge img {
-      width: 38px;
-      height: 38px;
+    .brand-pill img {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      box-shadow: 0 2px 10px rgba(230, 57, 70, 0.4);
     }
-    .logo-badge span {
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      color: var(--text);
-    }
-    .hero-title {
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
+    .brand-pill span {
+      font-size: 1rem;
       font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 900;
       letter-spacing: -1px;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, #ffffff 0%, #c9d1d9 60%, #8b949e 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
     }
-    .hero-subtitle {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 36px auto;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
     }
-    .badge-bar {
+    .global-badges {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
-    .pill {
-      background: rgba(22, 27, 34, 0.9);
-      border: 1px solid var(--border);
+    .badge {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.85rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .pill.accent {
-      border-color: rgba(88, 166, 255, 0.4);
-      color: var(--blue);
-      background: rgba(88, 166, 255, 0.08);
-    }
-    .pill.red {
-      border-color: rgba(230, 57, 70, 0.4);
-      color: var(--primary);
-      background: rgba(230, 57, 70, 0.08);
-    }
-    .pill.green {
-      border-color: rgba(46, 160, 67, 0.4);
-      color: var(--green);
-      background: rgba(46, 160, 67, 0.08);
+      font-weight: 700;
     }
 
-    /* DOWNLOAD GRID */
-    .download-grid {
+    /* SELECTEUR 2 COLONNES ULTRA NETTES */
+    .platforms-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 60px;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 28px;
+      margin-bottom: 50px;
     }
-    .download-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 32px 28px;
+
+    .platform-card {
+      border-radius: 22px;
+      padding: 36px 30px;
       display: flex;
       flex-direction: column;
       position: relative;
-      backdrop-filter: blur(12px);
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      border: 2px solid;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .download-card:hover {
-      transform: translateY(-4px);
-      border-color: #58a6ff;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-    }
-    .download-card.featured {
-      border-color: rgba(230, 57, 70, 0.5);
-      box-shadow: 0 8px 24px rgba(230, 57, 70, 0.15);
-    }
-    .download-card.featured:hover {
-      border-color: var(--primary);
-      box-shadow: 0 16px 36px rgba(230, 57, 70, 0.25);
-    }
-    .card-ribbon {
-      position: absolute;
-      top: -12px;
-      right: 24px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 4px 12px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
-    }
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .card-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      background: #21262d;
-      border: 1px solid var(--border);
-    }
-    .card-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-    }
-    .card-desc {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      margin-bottom: 24px;
-      flex-grow: 1;
-    }
-    .card-specs {
-      list-style: none;
-      margin-bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .card-specs li {
-      font-size: 0.88rem;
-      color: #c9d1d9;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .card-specs li span {
-      color: var(--green);
-      font-weight: bold;
-    }
-    .card-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px 20px;
-      border-radius: 10px;
-      font-size: 0.96rem;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: center;
-      border: 1px solid transparent;
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(230, 57, 70, 0.35);
-    }
-    .btn-primary:hover {
-      background: var(--primary-hover);
-      box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
-    }
-    .btn-blue {
-      background: var(--blue);
-      color: #090d16;
-      box-shadow: 0 4px 14px rgba(88, 166, 255, 0.35);
-    }
-    .btn-blue:hover {
-      background: var(--blue-hover);
-      box-shadow: 0 6px 20px rgba(88, 166, 255, 0.5);
-    }
-    .btn-secondary {
-      background: #21262d;
-      color: var(--text);
-      border-color: var(--border);
-    }
-    .btn-secondary:hover {
-      background: #30363d;
-      color: #fff;
+    .platform-card:hover {
+      transform: translateY(-5px);
     }
 
-    /* FEATURES SECTION */
-    .features-section {
-      background: rgba(13, 17, 23, 0.6);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 60px 0;
-      margin-bottom: 60px;
+    /* CARTE PC */
+    .card-pc {
+      background: linear-gradient(180deg, #131c31 0%, #0d1322 100%);
+      border-color: #2563eb;
     }
-    .section-title {
-      text-align: center;
-      font-size: 1.8rem;
+    .card-pc:hover {
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.25);
+    }
+    
+    /* CARTE MOBILE */
+    .card-mobile {
+      background: linear-gradient(180deg, #0e2920 0%, #091b15 100%);
+      border-color: #059669;
+    }
+    .card-mobile:hover {
+      box-shadow: 0 16px 40px rgba(5, 150, 105, 0.25);
+    }
+
+    .platform-tag {
+      position: absolute;
+      top: -14px;
+      left: 28px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
       font-weight: 800;
-      margin-bottom: 12px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
     }
-    .section-subtitle {
+    .tag-pc {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+    }
+    .tag-mobile {
+      background: #059669;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.5);
+    }
+
+    .platform-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    .platform-icon {
+      font-size: 3rem;
+      line-height: 1;
+    }
+    .platform-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+    }
+    .platform-sub {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .sub-pc { color: #60a5fa; }
+    .sub-mobile { color: #34d399; }
+
+    .platform-desc {
+      color: #d1d5db;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      min-height: 48px;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: #e5e7eb;
+    }
+    .features-list li span {
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+    .check-pc { color: #3b82f6; }
+    .check-mobile { color: #10b981; }
+
+    /* BOUTONS DE TELECHARGEMENT */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+    }
+    .download-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-weight: 800;
       text-align: center;
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 40px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      cursor: pointer;
     }
-    .features-grid {
+    .btn-main-text {
+      font-size: 1.15rem;
+      letter-spacing: 0.2px;
+    }
+    .btn-sub-text {
+      font-size: 0.78rem;
+      opacity: 0.85;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* Bouton PC Principal */
+    .btn-pc {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+    .btn-pc:hover {
+      background: #1d4ed8;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+    }
+
+    /* Bouton PC Secondaire */
+    .btn-pc-zip {
+      background: rgba(255, 255, 255, 0.05);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      padding: 12px;
+    }
+    .btn-pc-zip:hover {
+      background: rgba(59, 130, 246, 0.15);
+      color: #ffffff;
+    }
+
+    /* Bouton Mobile Principal */
+    .btn-mobile {
+      background: #059669;
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+    }
+    .btn-mobile:hover {
+      background: #047857;
+      box-shadow: 0 8px 25px rgba(5, 150, 105, 0.6);
+    }
+
+    /* SECTION DÉTAILS */
+    .info-section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 50px;
+    }
+    .info-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .steps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
-    .feature-item {
-      background: rgba(22, 27, 34, 0.7);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
+    .step-box {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
-    .feature-icon {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
+    .step-num {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #60a5fa;
+      text-transform: uppercase;
+      margin-bottom: 6px;
     }
-    .feature-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .feature-text {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.45;
+    .step-text {
+      font-size: 0.9rem;
+      color: #d1d5db;
     }
 
     /* FOOTER */
     footer {
       margin-top: auto;
-      border-top: 1px solid var(--border);
-      padding: 30px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 24px 0;
       text-align: center;
-      color: var(--text-muted);
       font-size: 0.85rem;
+      color: var(--text-muted);
     }
-    footer a { color: var(--blue); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <div class="logo-badge">
-        <img src="app_icon.png" alt="Logo DBD MAP" onerror="this.src='https://raw.githubusercontent.com/racitiilario88-cmyk/DBDMaps-Mobile/main/app_icon.png'">
+  <div class="wrapper">
+    <header>
+      <div class="brand-pill">
+        <img src="app_icon.png" alt="Logo">
         <span>DBD MAP • By Exprimes</span>
       </div>
-      <h1 class="hero-title">Toutes les cartes DBD en direct</h1>
-      <p class="hero-subtitle">
-        L'outil d'orientation ultime pour Dead by Daylight. Disponible sur PC en overlay discret, et sur Mobile pour les joueurs console (Xbox & PlayStation) en écran compagnon.
+      <h1>Choisissez votre Téléchargement</h1>
+      <p class="subtitle">
+        Deux versions distinctes conçues sur mesure : le logiciel pour votre PC et l'application pour votre téléphone.
       </p>
-      <div class="badge-bar">
-        <span class="pill red">🗺️ 43 Cartes HD en Français</span>
-        <span class="pill accent">⚡ Lobby Manager en temps réel</span>
-        <span class="pill green">🚀 Auto-Updater 1-Clic</span>
-        <span class="pill">🎮 100% Gratuit & Sécurisé</span>
+      <div class="global-badges">
+        <span class="badge">🗺️ 43 Cartes HD en Français</span>
+        <span class="badge">👥 Lobby Synchronisé PC ⇄ Mobile</span>
+        <span class="badge">🚀 Mises à jour automatiques</span>
+        <span class="badge">💯 100% Gratuit</span>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="container">
-    <div class="download-grid">
+    <div class="platforms-container">
 
-      <!-- PC WINDOWS -->
-      <div class="download-card featured">
-        <div class="card-ribbon">Recommandé PC</div>
-        <div class="card-header">
-          <div class="card-icon">💻</div>
+      <!-- ============================================== -->
+      <!-- COLONNE 1 : LOGICIEL POUR PC (WINDOWS) -->
+      <!-- ============================================== -->
+      <div class="platform-card card-pc">
+        <div class="platform-tag tag-pc">POUR ORDINATEUR</div>
+        
+        <div class="platform-header">
+          <div class="platform-icon">💻</div>
           <div>
-            <div class="card-title">Version PC</div>
-            <div style="font-size: 0.8rem; color: #8b949e;">Windows 10 / 11 (64-bit)</div>
+            <div class="platform-title">Version PC</div>
+            <div class="platform-sub sub-pc">Plateforme : Windows 10 & 11</div>
           </div>
         </div>
-        <p class="card-desc">
-          Application autonome avec overlay transparent en jeu, raccourci clavier personnalisable et détection automatique.
+
+        <p class="platform-desc">
+          À installer sur votre ordinateur pour jouer à Dead by Daylight avec l'overlay transparent directement sur votre écran.
         </p>
-        <ul class="card-specs">
-          <li><span>✓</span> 43 cartes HD embarquées (sans internet requis)</li>
-          <li><span>✓</span> Overlay transparent activable d'une touche</li>
-          <li><span>✓</span> Lobby Manager (synchronisation avec vos amis)</li>
-          <li><span>✓</span> Auto-Updater intégré automatique</li>
+
+        <ul class="features-list">
+          <li><span class="check-pc">✓</span> <strong>Overlay en jeu :</strong> affichez la carte par-dessus DBD</li>
+          <li><span class="check-pc">✓</span> <strong>Touche d'accès rapide :</strong> affichez / masquez en 1 clic</li>
+          <li><span class="check-pc">✓</span> <strong>Compteur :</strong> 43 cartes HD embarquées d'office</li>
+          <li><span class="check-pc">✓</span> <strong>Auto-Updater :</strong> se met à jour tout seul au démarrage</li>
         </ul>
-        <div class="card-actions">
-          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.exe" class="btn btn-primary">
-            <span>⚡ Télécharger DBDMaps.exe</span>
+
+        <div class="btn-group">
+          <!-- TELECHARGEMENT EXE PC -->
+          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.exe" class="download-btn btn-pc">
+            <span class="btn-main-text">💻 Télécharger pour PC (.EXE)</span>
+            <span class="btn-sub-text">Fichier Exécutable direct • Prêt à lancer</span>
           </a>
-          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps_Distribution.zip" class="btn btn-secondary">
-            <span>📦 Télécharger en archive (.ZIP)</span>
+
+          <!-- TELECHARGEMENT ZIP PC -->
+          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps_Distribution.zip" class="download-btn btn-pc-zip">
+            <span>📦 Télécharger en format ZIP (Dossier compressé)</span>
           </a>
         </div>
       </div>
 
-      <!-- MOBILE & CONSOLE -->
-      <div class="download-card">
-        <div class="card-header">
-          <div class="card-icon">📱</div>
+      <!-- ============================================== -->
+      <!-- COLONNE 2 : LOGICIEL POUR TÉLÉPHONE (ANDROID) -->
+      <!-- ============================================== -->
+      <div class="platform-card card-mobile">
+        <div class="platform-tag tag-mobile">POUR TÉLÉPHONE</div>
+
+        <div class="platform-header">
+          <div class="platform-icon">📱</div>
           <div>
-            <div class="card-title">Version Mobile</div>
-            <div style="font-size: 0.8rem; color: #8b949e;">Android (Smartphone & Tablette)</div>
+            <div class="platform-title">Version Téléphone</div>
+            <div class="platform-sub sub-mobile">Plateforme : Android (Mobile / Tablette)</div>
           </div>
         </div>
-        <p class="card-desc">
-          Idéal pour les joueurs console (Xbox & PlayStation) : posez votre téléphone à côté de la manette et suivez la partie.
+
+        <p class="platform-desc">
+          À installer sur votre smartphone. <strong>Indispensable pour les joueurs Console (Xbox & PlayStation)</strong> en écran compagnon.
         </p>
-        <ul class="card-specs">
-          <li><span>✓</span> Posez votre téléphone à côté de votre écran</li>
-          <li><span>✓</span> Zoom tactile fluide et recherche instantanée</li>
-          <li><span>✓</span> Synchronisé en direct avec le PC du groupe</li>
-          <li><span>✓</span> N'importe qui peut changer la carte pour l'équipe</li>
+
+        <ul class="features-list">
+          <li><span class="check-mobile">✓</span> <strong>Joueurs Xbox & PlayStation :</strong> posez le téléphone à côté de la manette</li>
+          <li><span class="check-mobile">✓</span> <strong>Lobby synchronisé :</strong> changez la carte pour toute l'équipe</li>
+          <li><span class="check-mobile">✓</span> <strong>Tactile & Zoom :</strong> pincez pour zoomer sur chaque détail</li>
+          <li><span class="check-mobile">✓</span> <strong>Bouton 🔄 :</strong> synchronisation instantanée des nouveautés</li>
         </ul>
-        <div class="card-actions">
-          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.apk" class="btn btn-blue">
-            <span>📥 Télécharger DBDMaps.apk</span>
-          </a>
-          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/tag/v1.0.0" target="_blank" class="btn btn-secondary">
-            <span>📄 Voir toutes les versions sur GitHub</span>
+
+        <div class="btn-group">
+          <!-- TELECHARGEMENT APK MOBILE -->
+          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.apk" class="download-btn btn-mobile">
+            <span class="btn-main-text">📱 Télécharger pour Téléphone (.APK)</span>
+            <span class="btn-sub-text">Fichier Android APK • Installation facile</span>
           </a>
         </div>
       </div>
 
     </div>
-  </main>
 
-  <section class="features-section">
-    <div class="container">
-      <h2 class="section-title">Fonctionnalités Clés</h2>
-      <p class="section-subtitle">Tout ce dont votre équipe a besoin pour s'échapper ou chasser efficacement.</p>
-
-      <div class="features-grid">
-        <div class="feature-item">
-          <div class="feature-icon">🗺️</div>
-          <div class="feature-name">43 Cartes Haute Résolution</div>
-          <div class="feature-text">Toutes les maps Dead by Daylight traduites en français, détaillées avec repères stratégiques, cabane, générateurs et sorties.</div>
+    <!-- GUIDE RAPIDE -->
+    <div class="info-section">
+      <div class="info-title">💡 Comment installer et utiliser ?</div>
+      <div class="steps-grid">
+        <div class="step-box">
+          <div class="step-num">Sur PC Windows</div>
+          <div class="step-text">Cliquez sur le bouton bleu pour télécharger <strong>DBDMaps.exe</strong>. Double-cliquez dessus pour lancer le logiciel immédiatement. Aucune installation compliquée !</div>
         </div>
-        <div class="feature-item">
-          <div class="feature-icon">👥</div>
-          <div class="feature-name">Lobby Manager Instantané</div>
-          <div class="feature-text">Rejoignez un salon en 1 clic : si vous ou un coéquipier changez de carte, elle s'affiche en moins d'une seconde chez tout le groupe !</div>
+        <div class="step-box">
+          <div class="step-num">Sur Téléphone Android</div>
+          <div class="step-text">Cliquez sur le bouton vert depuis votre téléphone pour télécharger <strong>DBDMaps.apk</strong>. Ouvrez le fichier téléchargé et validez l'installation.</div>
         </div>
-        <div class="feature-item">
-          <div class="feature-icon">🔄</div>
-          <div class="feature-name">Auto-Updater Intelligent</div>
-          <div class="feature-text">Ne ratez aucune nouvelle carte. L'application vérifie automatiquement les mises à jour et les télécharge sans aucune manipulation.</div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">🎮</div>
-          <div class="feature-name">Conçu pour PC & Console</div>
-          <div class="feature-text">Pensé aussi bien pour les joueurs PC avec l'overlay que pour les joueurs Xbox/PlayStation grâce au double écran mobile.</div>
+        <div class="step-box">
+          <div class="step-num">Jouer en Équipe (Lobby)</div>
+          <div class="step-text">Dans l'onglet <strong>Lobby</strong>, l'un des joueurs crée un code (ex: <em>ABC12</em>) et les autres le rejoignent. Dès qu'un joueur clique sur une carte, elle change chez tout le monde !</div>
         </div>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <div class="container">
-      <p>DBD MAP • Créé avec passion par <strong>Exprimes</strong> pour la communauté Dead by Daylight.</p>
-      <p style="margin-top: 8px; font-size: 0.78rem;">
-        <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/tag/v1.0.0" target="_blank">Releases GitHub</a> • 
-        <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile" target="_blank">Dépôt Public</a>
-      </p>
-    </div>
-  </footer>
+    <footer>
+      <p>DBD MAP • Créé par <strong>Exprimes</strong> • Dédié à tous les joueurs Dead by Daylight (PC, Xbox, PlayStation & Mobile)</p>
+    </footer>
+  </div>
 
 </body>
 </html>
