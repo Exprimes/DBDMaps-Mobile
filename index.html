@@ -75,8 +75,44 @@
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--text-muted);
       max-width: 700px;
-      margin: 0 auto 30px auto;
+      margin: 0 auto 20px auto;
     }
+
+    /* LIEN COURT DISCRET */
+    .short-link-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(40, 52, 70, 0.6);
+      border: 1px solid rgba(88, 166, 255, 0.4);
+      padding: 8px 18px;
+      border-radius: 30px;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+    }
+    .short-link-box a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .short-link-box a:hover {
+      text-decoration: underline;
+    }
+    .btn-copy-link {
+      background: #238636;
+      color: white;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-copy-link:hover {
+      background: #2ea043;
+    }
+
     .global-badges {
       display: flex;
       flex-wrap: wrap;
@@ -309,6 +345,94 @@
     .step-text {
       font-size: 0.9rem;
       color: #d1d5db;
+      line-height: 1.4;
+    }
+
+    /* MODAL CHOISIR EMPLACEMENT */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-card {
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 100%;
+      padding: 26px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #f3f4f6;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: #9ca3af;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-body {
+      font-size: 0.92rem;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+    .tip-box {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 10px;
+      font-size: 0.88rem;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn-modal-dl {
+      flex: 1;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-modal-dl:hover {
+      background: #1d4ed8;
+    }
+    .btn-modal-close {
+      background: #374151;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     /* FOOTER */
@@ -334,10 +458,20 @@
       <p class="subtitle">
         Deux versions distinctes conçues sur mesure : le logiciel pour votre PC et l'application pour votre téléphone.
       </p>
+
+      <!-- LIEN COURT DISCRET -->
+      <div class="short-link-box">
+        <span>🔗 Lien court discret :</span>
+        <a href="https://tinyurl.com/dbd-maps" target="_blank">tinyurl.com/dbd-maps</a>
+        <button class="btn-copy-link" onclick="copyShortLink()">Copier</button>
+      </div>
+
       <div class="global-badges">
         <span class="badge">🗺️ 43 Cartes HD en Français</span>
-        <span class="badge">👥 Lobby Synchronisé PC ⇄ Mobile</span>
-        <span class="badge">🚀 Mises à jour automatiques</span>
+        <span class="badge">👥 Lobby Synchronisé PC & Mobile</span>
+        <span class="badge">⚡ Raccourcis Clavier In-Game (F8 / F9)</span>
+        <span class="badge">👁️ Reconnaissance Auto OCR</span>
+        <span class="badge">🔄 Mises à jour automatiques</span>
         <span class="badge">💯 100% Gratuit</span>
       </div>
     </header>
@@ -353,31 +487,39 @@
         <div class="platform-header">
           <div class="platform-icon">💻</div>
           <div>
-            <div class="platform-title">Version PC</div>
+            <div class="platform-title">Version PC (v1.0.1)</div>
             <div class="platform-sub sub-pc">Plateforme : Windows 10 & 11</div>
           </div>
         </div>
 
         <p class="platform-desc">
-          À installer sur votre ordinateur pour jouer à Dead by Daylight avec l'overlay transparent directement sur votre écran.
+          À installer sur votre ordinateur pour jouer à Dead by Daylight avec l'overlay transparent directement sur votre écran de jeu.
         </p>
 
         <ul class="features-list">
           <li><span class="check-pc">✓</span> <strong>Overlay en jeu :</strong> affichez la carte par-dessus DBD</li>
-          <li><span class="check-pc">✓</span> <strong>Touche d'accès rapide :</strong> affichez / masquez en 1 clic</li>
+          <li><span class="check-pc">✓</span> <strong>Raccourcis In-Game (F8 / F9) :</strong> actifs même en plein écran</li>
+          <li><span class="check-pc">✓</span> <strong>Reconnaissance OCR auto :</strong> détecte la map et l'envoie au Lobby</li>
           <li><span class="check-pc">✓</span> <strong>Compteur :</strong> 43 cartes HD embarquées d'office</li>
-          <li><span class="check-pc">✓</span> <strong>Auto-Updater :</strong> se met à jour tout seul au démarrage</li>
+          <li><span class="check-pc">✓</span> <strong>Trouver le fichier :</strong> bouton pour localiser l'exécutable sur votre PC</li>
+          <li><span class="check-pc">✓</span> <strong>Auto-Updater :</strong> vérifie et installe les mises à jour en 1 clic</li>
         </ul>
 
         <div class="btn-group">
           <!-- TELECHARGEMENT EXE PC -->
-          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.exe" class="download-btn btn-pc">
+          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.exe" 
+             download="DBDMaps.exe" 
+             class="download-btn btn-pc"
+             onclick="openLocationModal(event, this.href, 'DBDMaps.exe')">
             <span class="btn-main-text">💻 Télécharger pour PC (.EXE)</span>
             <span class="btn-sub-text">Fichier Exécutable direct • Prêt à lancer</span>
           </a>
 
           <!-- TELECHARGEMENT ZIP PC -->
-          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps_Distribution.zip" class="download-btn btn-pc-zip">
+          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps_Distribution.zip" 
+             download="DBDMaps_Distribution.zip" 
+             class="download-btn btn-pc-zip"
+             onclick="openLocationModal(event, this.href, 'DBDMaps_Distribution.zip')">
             <span>📦 Télécharger en format ZIP (Dossier compressé)</span>
           </a>
         </div>
@@ -410,7 +552,9 @@
 
         <div class="btn-group">
           <!-- TELECHARGEMENT APK MOBILE -->
-          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.apk" class="download-btn btn-mobile">
+          <a href="https://github.com/racitiilario88-cmyk/DBDMaps-Mobile/releases/download/v1.0.0/DBDMaps.apk" 
+             download="DBDMaps.apk" 
+             class="download-btn btn-mobile">
             <span class="btn-main-text">📱 Télécharger pour Téléphone (.APK)</span>
             <span class="btn-sub-text">Fichier Android APK • Installation facile</span>
           </a>
@@ -425,7 +569,7 @@
       <div class="steps-grid">
         <div class="step-box">
           <div class="step-num">Sur PC Windows</div>
-          <div class="step-text">Cliquez sur le bouton bleu pour télécharger <strong>DBDMaps.exe</strong>. Double-cliquez dessus pour lancer le logiciel immédiatement. Aucune installation compliquée !</div>
+          <div class="step-text">Cliquez sur le bouton bleu pour télécharger <strong>DBDMaps.exe</strong>. Lancez-le et retrouvez son emplacement exact à tout moment dans l'onglet <strong>Paramètres ➔ Emplacement du logiciel</strong>.</div>
         </div>
         <div class="step-box">
           <div class="step-num">Sur Téléphone Android</div>
@@ -433,7 +577,7 @@
         </div>
         <div class="step-box">
           <div class="step-num">Jouer en Équipe (Lobby)</div>
-          <div class="step-text">Dans l'onglet <strong>Lobby</strong>, l'un des joueurs crée un code (ex: <em>ABC12</em>) et les autres le rejoignent. Dès qu'un joueur clique sur une carte, elle change chez tout le monde !</div>
+          <div class="step-text">Dans l'onglet <strong>Lobby</strong>, l'un des joueurs crée un code (ex: <em>ABC12</em>) et les autres le rejoignent. Dès qu'un joueur clique sur une carte ou lance la détection OCR, elle change chez tout le monde !</div>
         </div>
       </div>
     </div>
@@ -442,6 +586,55 @@
       <p>DBD MAP • Créé par <strong>Exprimes</strong> • Dédié à tous les joueurs Dead by Daylight (PC, Xbox, PlayStation & Mobile)</p>
     </footer>
   </div>
+
+  <!-- MODAL CHOISIR EMPLACEMENT -->
+  <div id="locationModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">💾 Choisir où enregistrer le fichier</div>
+        <button class="modal-close" onclick="closeLocationModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Souhaitez-vous choisir l'emplacement exact où enregistrer le fichier (ex: directement sur votre <strong>Bureau</strong>) ?</p>
+        
+        <div class="tip-box">
+          <strong>👉 Pour choisir votre dossier :</strong><br>
+          Faites un <strong>Clic Droit</strong> sur le bouton de téléchargement, puis cliquez sur <strong>« Enregistrer le lien sous... »</strong> (ou <em>Save link as...</em>). Vous pourrez sélectionner votre Bureau ou le dossier de votre choix !
+        </div>
+        <div style="font-size: 0.8rem; color: #9ca3af; margin-top: 6px;">
+          💡 <em>Vous pouvez aussi cliquer sur « Télécharger directement » ci-dessous pour le placer dans vos Téléchargements.</em>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <a id="modalDownloadBtn" href="#" class="btn-modal-dl">📥 Télécharger directement</a>
+        <button class="btn-modal-close" onclick="closeLocationModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyShortLink() {
+      navigator.clipboard.writeText("https://tinyurl.com/dbd-maps").then(() => {
+        alert("📋 Lien discret copié : https://tinyurl.com/dbd-maps !");
+      });
+    }
+
+    function openLocationModal(e, url, filename) {
+      e.preventDefault();
+      const modal = document.getElementById("locationModal");
+      const btn = document.getElementById("modalDownloadBtn");
+      btn.href = url;
+      btn.setAttribute("download", filename);
+      btn.onclick = () => {
+        closeLocationModal();
+      };
+      modal.style.display = "flex";
+    }
+
+    function closeLocationModal() {
+      document.getElementById("locationModal").style.display = "none";
+    }
+  </script>
 
 </body>
 </html>
