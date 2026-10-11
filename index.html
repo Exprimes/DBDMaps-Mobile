@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DBD MAP • Téléchargement PC & Téléphone (By Exprimes)</title>
+  <title>DBD MAP • Téléchargement PC & Mobile (By Exprimes)</title>
   <link rel="icon" type="image/png" href="app_icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,7 @@
     /* EN-TÊTE */
     header {
       text-align: center;
-      padding: 40px 0 20px 0;
+      padding: 44px 0 24px 0;
     }
     .brand-pill {
       display: inline-flex;
@@ -50,7 +50,7 @@
       gap: 12px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 8px 20px;
+      padding: 8px 22px;
       border-radius: 40px;
       margin-bottom: 20px;
       backdrop-filter: blur(8px);
@@ -74,10 +74,10 @@
     .subtitle {
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--text-muted);
-      max-width: 700px;
-      margin: 0 auto 20px auto;
+      max-width: 720px;
+      margin: 0 auto 24px auto;
+      line-height: 1.5;
     }
-
 
     .global-badges {
       display: flex;
@@ -95,12 +95,12 @@
       font-weight: 700;
     }
 
-    /* SELECTEUR 2 COLONNES ULTRA NETTES */
+    /* SELECTEUR 2 COLONNES */
     .platforms-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
       gap: 28px;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
 
     .platform-card {
@@ -274,13 +274,60 @@
       box-shadow: 0 8px 25px rgba(5, 150, 105, 0.6);
     }
 
+    /* SECTION CHANGELOG */
+    .changelog-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 24px 28px;
+      margin-bottom: 36px;
+    }
+    .changelog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .changelog-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #f3f4f6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .changelog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .changelog-item {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      color: #d1d5db;
+      line-height: 1.4;
+    }
+    .changelog-item strong {
+      color: #60a5fa;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
     /* SECTION DÉTAILS */
     .info-section {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 18px;
       padding: 30px;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     .info-title {
       font-size: 1.3rem;
@@ -422,20 +469,20 @@
       </div>
       <h1>Choisissez votre Téléchargement</h1>
       <p class="subtitle">
-        Deux versions distinctes conçues sur mesure : le logiciel pour votre PC et l'application pour votre téléphone.
+        Deux versions officielles créées sur mesure : le logiciel overlay pour votre PC et l'application autonome pour votre téléphone ou console.
       </p>
-
 
       <div class="global-badges">
         <span class="badge">🗺️ 43 Cartes HD en Français</span>
         <span class="badge">👥 Lobby Synchronisé PC & Mobile</span>
         <span class="badge">⚡ Raccourcis Clavier In-Game (F8 / F9)</span>
         <span class="badge">👁️ Reconnaissance Auto OCR</span>
-        <span class="badge">🔄 Mises à jour automatiques</span>
-        <span class="badge">💯 100% Gratuit</span>
+        <span class="badge">🚀 Vérificateur de Mises à Jour Intégré</span>
+        <span class="badge">💯 100% Gratuit & Sans Pub</span>
       </div>
     </header>
 
+    <!-- CARTOUCHES DE TELECHARGEMENT -->
     <div class="platforms-container">
 
       <!-- ============================================== -->
@@ -448,7 +495,7 @@
           <div class="platform-icon">💻</div>
           <div>
             <div class="platform-title">Version PC (v1.0.1)</div>
-            <div class="platform-sub sub-pc">Plateforme : Windows 10 & 11</div>
+            <div class="platform-sub sub-pc">Plateforme : Windows 10 & 11 (64 bits)</div>
           </div>
         </div>
 
@@ -457,12 +504,12 @@
         </p>
 
         <ul class="features-list">
-          <li><span class="check-pc">✓</span> <strong>Overlay en jeu :</strong> affichez la carte par-dessus DBD</li>
-          <li><span class="check-pc">✓</span> <strong>Raccourcis In-Game (F8 / F9) :</strong> actifs même en plein écran</li>
+          <li><span class="check-pc">✓</span> <strong>Overlay en jeu :</strong> affichez la carte par-dessus DBD sans lag</li>
+          <li><span class="check-pc">✓</span> <strong>Raccourcis In-Game (F8 / F9) :</strong> actifs même en plein écran exclusif</li>
           <li><span class="check-pc">✓</span> <strong>Reconnaissance OCR auto :</strong> détecte la map et l'envoie au Lobby</li>
-          <li><span class="check-pc">✓</span> <strong>Compteur :</strong> 43 cartes HD embarquées d'office</li>
+          <li><span class="check-pc">✓</span> <strong>43 cartes HD embarquées :</strong> chargement instantané sans connexion</li>
           <li><span class="check-pc">✓</span> <strong>Trouver le fichier :</strong> bouton pour localiser l'exécutable sur votre PC</li>
-          <li><span class="check-pc">✓</span> <strong>Auto-Updater :</strong> vérifie et installe les mises à jour en 1 clic</li>
+          <li><span class="check-pc">✓</span> <strong>Auto-Updater intégré :</strong> vérifie et installe les mises à jour en 1 clic</li>
         </ul>
 
         <div class="btn-group">
@@ -494,8 +541,8 @@
         <div class="platform-header">
           <div class="platform-icon">📱</div>
           <div>
-            <div class="platform-title">Version Téléphone</div>
-            <div class="platform-sub sub-mobile">Plateforme : Android (Mobile / Tablette)</div>
+            <div class="platform-title">Version Téléphone (v1.0.1)</div>
+            <div class="platform-sub sub-mobile">Plateforme : Android (Mobile & Tablette)</div>
           </div>
         </div>
 
@@ -505,9 +552,11 @@
 
         <ul class="features-list">
           <li><span class="check-mobile">✓</span> <strong>Joueurs Xbox & PlayStation :</strong> posez le téléphone à côté de la manette</li>
-          <li><span class="check-mobile">✓</span> <strong>Lobby synchronisé :</strong> changez la carte pour toute l'équipe</li>
-          <li><span class="check-mobile">✓</span> <strong>Tactile & Zoom :</strong> pincez pour zoomer sur chaque détail</li>
-          <li><span class="check-mobile">✓</span> <strong>Bouton 🔄 :</strong> synchronisation instantanée des nouveautés</li>
+          <li><span class="check-mobile">✓</span> <strong>Vérificateur de Mises à Jour :</strong> recherche et installe les MÀJ en 1 clic</li>
+          <li><span class="check-mobile">✓</span> <strong>Lobby synchronisé :</strong> changez la carte pour toute votre équipe en direct</li>
+          <li><span class="check-mobile">✓</span> <strong>Écran toujours allumé :</strong> ne s'éteint jamais pendant vos parties</li>
+          <li><span class="check-mobile">✓</span> <strong>Tactile & Zoom précis :</strong> pincez à 2 doigts et glissez pour explorer</li>
+          <li><span class="check-mobile">✓</span> <strong>43 cartes HD embarquées :</strong> fonctionne 100% hors-ligne</li>
         </ul>
 
         <div class="btn-group">
@@ -523,21 +572,50 @@
 
     </div>
 
-    <!-- GUIDE RAPIDE -->
+    <!-- NOUVEAUTES v1.0.1 -->
+    <div class="changelog-box">
+      <div class="changelog-header">
+        <div class="changelog-title">
+          <span>🚀</span>
+          <span>Dernières Nouveautés — Version 1.0.1</span>
+        </div>
+        <span class="badge" style="background:#238636; color:#fff; border-color:#2ea043;">Dernière Version Officielle</span>
+      </div>
+      <div class="changelog-grid">
+        <div class="changelog-item">
+          <strong>📱 Vérificateur de Mises à Jour</strong>
+          Bouton fusée 🚀 et modale interactive sur téléphone pour vérifier et télécharger les nouvelles versions en 1 clic.
+        </div>
+        <div class="changelog-item">
+          <strong>👥 Lobby Manager Bidirectionnel</strong>
+          Connexion ultra-rapide par code d'équipe. La sélection de carte sur mobile se répercute sur PC, et vice-versa.
+        </div>
+        <div class="changelog-item">
+          <strong>👁️ OCR & Diffusion Directe</strong>
+          Détection automatique de l'écran de chargement DBD sur PC avec diffusion instantanée de la carte au Lobby.
+        </div>
+        <div class="changelog-item">
+          <strong>🗺️ 43 Cartes Intégrées HD</strong>
+          Toutes les cartes françaises embarquées hors-ligne, sans téléchargement supplémentaire requis.
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIDE D'UTILISATION -->
     <div class="info-section">
       <div class="info-title">💡 Comment installer et utiliser ?</div>
       <div class="steps-grid">
         <div class="step-box">
-          <div class="step-num">Sur PC Windows</div>
+          <div class="step-num">1. Sur PC Windows</div>
           <div class="step-text">Cliquez sur le bouton bleu pour télécharger <strong>DBDMaps.exe</strong>. Lancez-le et retrouvez son emplacement exact à tout moment dans l'onglet <strong>Paramètres ➔ Emplacement du logiciel</strong>.</div>
         </div>
         <div class="step-box">
-          <div class="step-num">Sur Téléphone Android</div>
+          <div class="step-num">2. Sur Téléphone Android</div>
           <div class="step-text">Cliquez sur le bouton vert depuis votre téléphone pour télécharger <strong>DBDMaps.apk</strong>. Ouvrez le fichier téléchargé et validez l'installation.</div>
         </div>
         <div class="step-box">
-          <div class="step-num">Jouer en Équipe (Lobby)</div>
-          <div class="step-text">Dans l'onglet <strong>Lobby</strong>, l'un des joueurs crée un code (ex: <em>ABC12</em>) et les autres le rejoignent. Dès qu'un joueur clique sur une carte ou lance la détection OCR, elle change chez tout le monde !</div>
+          <div class="step-num">3. Jouer en Équipe (Lobby)</div>
+          <div class="step-text">Dans l'onglet <strong>Lobby</strong>, un joueur crée un code (ex: <em>ABC12</em>) et les autres le rejoignent. Dès qu'un joueur clique sur une carte ou que l'OCR la détecte, elle s'affiche chez tout le monde !</div>
         </div>
       </div>
     </div>
@@ -573,7 +651,6 @@
   </div>
 
   <script>
-
     function openLocationModal(e, url, filename) {
       e.preventDefault();
       const modal = document.getElementById("locationModal");
