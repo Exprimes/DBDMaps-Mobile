@@ -569,6 +569,15 @@
 </head>
 <body>
 
+  <!-- BANNIÈRE INSTALLATION IOS PLEIN ÉCRAN -->
+  <div id="iosInstallBanner" style="display:none; background: #064e3b; color: #d1fae5; border-bottom: 1px solid #059669; padding: 10px 14px; font-size: 0.82rem; align-items: center; justify-content: space-between; gap: 10px; z-index: 999;">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:1.1rem;">📲</span>
+      <span><strong>Installer en Plein Écran :</strong> Safari ➔ Partager <strong>⬆️</strong> ➔ <em>« Sur l'écran d'accueil »</em> (gardez coché <strong>« Ouvrir comme app web » 🟢</strong>) ➔ <strong>Ajouter</strong></span>
+    </div>
+    <button onclick="document.getElementById('iosInstallBanner').style.display='none'" style="background:none; border:none; color:#a7f3d0; font-size:1.2rem; cursor:pointer; padding:0 4px;">&times;</button>
+  </div>
+
   <header>
     <div class="top-bar">
       <div class="brand">
@@ -1376,6 +1385,12 @@
 
     // Battement de cœur en direct toutes les 45 secondes
     setInterval(sendMobileTelemetryHeartbeat, 45000);
+
+    // Détection iOS Safari (hors mode autonome)
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.navigator.standalone) {
+      const iosBanner = document.getElementById("iosInstallBanner");
+      if (iosBanner) iosBanner.style.display = "flex";
+    }
   </script>
 </body>
 </html>
