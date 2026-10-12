@@ -1055,22 +1055,32 @@
       updateLobbyUI();
       showToast("✅ Connecté au Lobby " + currentLobbyCode + " !");
 
-      const url = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/${currentLobbyCode}`;
-      
-      lobbyPollTimer = setInterval(async () => {
-        try {
-          const resp = await fetch(url);
-          if (!resp.ok) return;
-          let val = await resp.text();
-          if (val) {
-            val = val.trim().replace(/^"|"$/g, "");
-            if (val && val !== "null" && val !== "LOBBY_CREATED" && val.toLowerCase() !== lastSyncedMapName.toLowerCase()) {
-              lastSyncedMapName = val;
-              onMapReceivedFromLobby(val);
-            }
+    async function pollLobbyOnce() {
+      if (!currentLobbyCode) return;
+      try {
+        const url = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/${currentLobbyCode}?t=${Date.now()}`;
+        const resp = await fetch(url, { cache: "no-store" });
+        if (!resp.ok) return;
+        let val = await resp.text();
+        if (val) {
+          val = val.trim().replace(/^"|"$/g, "");
+          if (val && val !== "null" && val !== "LOBBY_CREATED" && val.toLowerCase() !== lastSyncedMapName.toLowerCase()) {
+            lastSyncedMapName = val;
+            await onMapReceivedFromLobby(val);
           }
-        } catch (e) {}
-      }, 1200);
+        }
+      } catch (e) {}
+    }
+
+    function startLobbyListener(code) {
+      stopLobbyListener();
+      currentLobbyCode = code.toUpperCase();
+      localStorage.setItem("dbd_mobile_lobby_code", currentLobbyCode);
+      updateLobbyUI();
+      showToast("✅ Connecté au Lobby " + currentLobbyCode + " !");
+
+      pollLobbyOnce();
+      lobbyPollTimer = setInterval(pollLobbyOnce, 1200);
     }
 
     function stopLobbyListener() {
@@ -1083,19 +1093,51 @@
       updateLobbyUI();
     }
 
-    function onMapReceivedFromLobby(mapName) {
-      lobbySyncMsg.textContent = "⚡ Dernière carte reçue : " + mapName;
-      // Trouver la carte dans notre liste
-      const cleanTarget = cleanStr(mapName);
+    async function onMapReceivedFromLobby(mapPayload) {
+      // Cas 1 : Réception d'une carte personnalisée dessinée sur PC (CUSTOM_MAP:Name:Ext)
+      if (mapPayload.startsWith("CUSTOM_MAP:")) {
+        const parts = mapPayload.split(":");
+        const customName = parts.length > 1 ? parts[1] : "Carte Custom";
+        lobbySyncMsg.textContent = "⚡ Réception de la carte custom : " + customName;
+        try {
+          const customUrl = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/${currentLobbyCode}_CUSTOM?t=${Date.now()}`;
+          const res = await fetch(customUrl, { cache: "no-store" });
+          if (res.ok) {
+            let b64 = (await res.text()).trim().replace(/^"|"$/g, "");
+            if (b64) {
+              const customMapObj = {
+                name: customName,
+                creator: "Lobby PC",
+                src: "data:image/png;base64," + b64
+              };
+              openViewer(customMapObj, true);
+              showToast("🎨 Carte custom reçue du Lobby : " + customName);
+              return;
+            }
+          }
+        } catch (e) {}
+        return;
+      }
+
+      // Cas 2 : Carte officielle
+      lobbySyncMsg.textContent = "⚡ Dernière carte reçue : " + mapPayload;
+      const cleanTarget = cleanStr(mapPayload);
       let match = MAPS.find(m => cleanStr(m.name) === cleanTarget || cleanStr(m.name).includes(cleanTarget) || cleanTarget.includes(cleanStr(m.name)));
       
       if (match) {
         openViewer(match, true);
         showToast("🎮 Carte reçue du Lobby : " + match.name);
       } else {
-        showToast("ℹ️ Carte reçue : " + mapName);
+        showToast("ℹ️ Carte reçue : " + mapPayload);
       }
     }
+
+    // Réveil immédiat si retour au premier plan sur iPhone / iOS
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible" && currentLobbyCode) {
+        pollLobbyOnce();
+      }
+    });
 
     btnJoinLobby.addEventListener("click", () => {
       const code = inputLobbyCode.value.trim().toUpperCase();
