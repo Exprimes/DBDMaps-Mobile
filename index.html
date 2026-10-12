@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DBD MAP • Téléchargement PC & Mobile (By Exprimes)</title>
   <link rel="icon" type="image/png" href="app_icon.png">
+
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="DBD MAP">
@@ -316,6 +317,7 @@
     .ios-step-text strong {
       color: #ffffff;
     }
+
     /* SECTION CHANGELOG */
     .changelog-box {
       background: rgba(255, 255, 255, 0.03);
@@ -613,7 +615,7 @@
           <!-- BOUTON IPHONE IOS PWA -->
           <button class="download-btn btn-ios" onclick="openIosModal()">
             <span class="btn-main-text">🍏 Installer sur iPhone / iPad (iOS)</span>
-            <span class="btn-sub-text">Sans téléchargement • Installation écran d'accueil</span>
+            <span class="btn-sub-text">Sans téléchargement • Plein écran avec Safari</span>
           </button>
         </div>
       </div>
@@ -663,7 +665,7 @@
         </div>
         <div class="step-box">
           <div class="step-num">3. Sur iPhone (iOS)</div>
-          <div class="step-text">Ouvrez le site avec Safari, appuyez sur <strong>Partager ⬆️</strong> puis sur <strong>« Sur l'écran d'accueil ➕ »</strong> pour lancer l'application en plein écran.</div>
+          <div class="step-text">Ouvrez le site avec <strong>Safari</strong> ➔ <strong>Partager ⬆️</strong> ➔ <strong>« Sur l'écran d'accueil ➕ »</strong>. Laissez bien coché <strong>« Ouvrir comme app web » (vert 🟢)</strong> et appuyez sur <strong>Ajouter</strong>.</div>
         </div>
         <div class="step-box">
           <div class="step-num">4. Jouer en Équipe (Lobby)</div>
@@ -679,14 +681,14 @@
 
   <!-- MODAL INSTALLATION IPHONE IOS -->
   <div id="iosModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 520px;">
+    <div class="modal-card" style="max-width: 530px;">
       <div class="modal-header">
         <div class="modal-title">🍏 Comment installer sur iPhone & iPad ?</div>
         <button class="modal-close" onclick="closeIosModal()">&times;</button>
       </div>
       <div class="modal-body">
         <p style="margin-bottom: 14px; color: #d1d5db; font-size: 0.9rem;">
-          Sur iPhone, Apple ne permet pas de télécharger un fichier APK, mais vous pouvez installer <strong>l'application officielle directement sur votre écran d'accueil</strong> en 3 étapes très simples :
+          Sur iPhone, Apple ne permet pas de télécharger un fichier APK, mais vous pouvez installer <strong>l'application officielle en plein écran</strong> directement sur votre écran d'accueil :
         </p>
 
         <div class="ios-step">
@@ -706,12 +708,31 @@
         <div class="ios-step">
           <div class="ios-step-icon">3️⃣</div>
           <div class="ios-step-text">
-            Faites défiler vers le bas et sélectionnez <strong>« Sur l'écran d'accueil »</strong> (avec l'icône <strong>➕</strong>), puis validez en appuyant sur <strong>Ajouter</strong> en haut à droite.
+            Faites défiler vers le bas et sélectionnez <strong>« Sur l'écran d'accueil »</strong> (avec l'icône <strong>➕</strong>).
           </div>
         </div>
 
-        <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; border-radius: 10px; padding: 12px; margin-top: 14px; text-align: left; font-size: 0.85rem; color: #a7f3d0;">
-          ✨ <strong>C'est prêt !</strong> L'icône DBD MAP apparaît sur votre écran d'accueil. En cliquant dessus, l'application s'ouvre en <strong>plein écran sans barre Safari</strong> avec les 43 cartes HD et le Lobby synchronisé !
+        <!-- ENCADRÉ TRÈS IMPORTANT SUR OUVRIR COMME APP WEB -->
+        <div style="background: rgba(16, 185, 129, 0.12); border: 2px solid #10b981; border-radius: 12px; padding: 14px; margin: 14px 0; text-align: left;">
+          <div style="font-weight: 800; color: #34d399; font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+            <span>🟢</span> <span>IMPORTANT AVANT D'APPUYER SUR « AJOUTER » :</span>
+          </div>
+          <div style="font-size: 0.88rem; color: #f3f4f6; line-height: 1.5; margin-bottom: 10px;">
+            ✅ <strong>Laissez bien cochée la case « Ouvrir comme app web » :</strong><br>
+            <span style="color: #cbd5e1; font-size: 0.83rem;">Le bouton doit rester activé en vert 🟢. C'est impératif pour que l'application s'ouvre en <strong>vrai plein écran autonome</strong>, sans la barre d'adresse ni les boutons Safari !</span>
+          </div>
+          <div style="font-size: 0.88rem; color: #f3f4f6; line-height: 1.5; margin-bottom: 8px;">
+            ✏️ <strong>Nom du raccourci :</strong><br>
+            <span style="color: #cbd5e1; font-size: 0.83rem;">Vous pouvez renommer le texte en <strong>DBD MAP</strong> pour un affichage propre sur votre écran.</span>
+          </div>
+          <div style="font-size: 0.88rem; color: #f3f4f6; line-height: 1.5;">
+            👉 <strong>Appuyez sur « Ajouter » :</strong><br>
+            <span style="color: #cbd5e1; font-size: 0.83rem;">Cliquez sur le bouton bleu <strong>Ajouter</strong> tout en haut à droite.</span>
+          </div>
+        </div>
+
+        <div style="background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.35); border-radius: 10px; padding: 12px; text-align: left; font-size: 0.85rem; color: #93c5fd;">
+          ✨ <strong>C'est prêt !</strong> L'icône officielle DBD MAP apparaît sur votre écran d'accueil. En cliquant dessus, vous accédez directement aux 43 cartes HD et au Lobby synchronisé.
         </div>
       </div>
       <div class="modal-actions">
@@ -720,6 +741,8 @@
       </div>
     </div>
   </div>
+
+
 
   <!-- MODAL CHOISIR EMPLACEMENT -->
   <div id="locationModal" class="modal-overlay">
@@ -753,6 +776,7 @@
     function closeIosModal() {
       document.getElementById('iosModal').style.display = 'none';
     }
+
     function openLocationModal(e, url, filename) {
       e.preventDefault();
       const modal = document.getElementById("locationModal");
