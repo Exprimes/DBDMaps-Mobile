@@ -4,9 +4,9 @@
     "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.3/DBDMaps.apk",
     "changelog": "Nouvelle carte officielle 'La Ferme Thompson' ajoutée (44 cartes HD), bouton de synchronisation en direct sur PC, détection temps réel iOS / Mobile et optimisations de performances.",
     "admin_alert": {
-        "enabled": false,
+        "enabled": true,
         "min_version": "1.0.3",
-        "date": "",
-        "message": ""
+        "date": "13/10/2026",
+        "message": "Mise à jour majeure v1.0.3 disponible : Nouvelle carte La Ferme Thompson et synchronisation instantanée ! Cliquez sur 'Oui' pour l'installer automatiquement."
     }
 }
