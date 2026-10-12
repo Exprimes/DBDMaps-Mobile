@@ -1332,22 +1332,37 @@
     }
 
     // ==========================================
-    // 📡 TÉLÉMÉTRIE JOUEURS ACTIFS (MOBILE)
+    // 📡 TÉLÉMÉTRIE JOUEURS ACTIFS (MOBILE & IOS)
     // ==========================================
+    function detectPlatform() {
+      const ua = navigator.userAgent || "";
+      if (/iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) {
+        return "ios";
+      }
+      if (/Android/i.test(ua)) {
+        return "android";
+      }
+      return "web";
+    }
+
     async function sendMobileTelemetryHeartbeat() {
       try {
+        const plat = detectPlatform();
+        const prefix = plat === "ios" ? "IOS-" : (plat === "android" ? "AND-" : "WEB-");
+        
         let mobileId = localStorage.getItem("dbd_mobile_client_id");
-        if (!mobileId) {
-          mobileId = "AND-" + Math.floor(1000 + Math.random() * 9000);
+        // Migration de l'ancien ID si nécessaire
+        if (!mobileId || (plat === "ios" && !mobileId.startsWith("IOS-")) || (plat === "android" && !mobileId.startsWith("AND-"))) {
+          mobileId = prefix + Math.floor(1000 + Math.random() * 9000);
           localStorage.setItem("dbd_mobile_client_id", mobileId);
         }
 
         const now = Math.floor(Date.now() / 1000);
-        const getUrl = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/ACTIVE_USERS`;
+        const getUrl = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/ACTIVE_USERS?t=${Date.now()}`;
         
         let existingB64 = "";
         try {
-          const resp = await fetch(getUrl);
+          const resp = await fetch(getUrl, { cache: "no-store" });
           if (resp.ok) {
             existingB64 = (await resp.text()).trim().replace(/"/g, "");
           }
@@ -1370,7 +1385,7 @@
             const tokens = part.split(":");
             if (tokens.length >= 4) {
               if (tokens[0] === mobileId) {
-                lines.push(`${mobileId}:${CURRENT_MOBILE_VERSION}:android:${now}`);
+                lines.push(`${mobileId}:${CURRENT_MOBILE_VERSION}:${plat}:${now}`);
                 updated = true;
               } else {
                 const ts = parseInt(tokens[3]);
@@ -1384,7 +1399,7 @@
         }
 
         if (!updated) {
-          lines.push(`${mobileId}:${CURRENT_MOBILE_VERSION}:android:${now}`);
+          lines.push(`${mobileId}:${CURRENT_MOBILE_VERSION}:${plat}:${now}`);
         }
 
         if (lines.length > 100) {
