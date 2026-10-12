@@ -863,7 +863,7 @@
           card.className = "map-card";
           card.innerHTML = `
             <div class="map-thumb-wrap">
-              <img src="${map.src}" alt="${map.name}" loading="lazy" onerror="this.src='app_icon.png'">
+              <img src="${map.src}" alt="${map.name}" loading="lazy" onerror="if(!this.dataset.retry){this.dataset.retry='1';const s=this.getAttribute('src')||'';this.src=s.startsWith('http')?s:('https://exprimes.github.io/dbd-maps/'+s.replace(/^\/+/,''));}else{this.src='app_icon.png';}">
             </div>
             <div class="map-info">
               <span class="map-title">${map.name}</span>
@@ -1193,24 +1193,38 @@
       renderMaps(MAPS);
 
       try {
-        const mapsUrl = "https://raw.githubusercontent.com/Exprimes/dbd-maps/main/maps.json?t=" + Date.now();
-        const resp = await fetch(mapsUrl, { cache: "no-store" });
+        const mapsUrls = [
+          "https://exprimes.github.io/dbd-maps/maps.json?t=" + Date.now(),
+          "https://raw.githubusercontent.com/Exprimes/dbd-maps/main/maps.json?t=" + Date.now()
+        ];
+        let remoteMaps = null;
+        for (const u of mapsUrls) {
+          try {
+            const resp = await fetch(u, { cache: "no-store" });
+            if (resp.ok) {
+              remoteMaps = await resp.json();
+              if (Array.isArray(remoteMaps) && remoteMaps.length > 0) break;
+            }
+          } catch (err) {}
+        }
+
         let addedCount = 0;
-        if (resp.ok) {
-          const remoteMaps = await resp.json();
-          if (Array.isArray(remoteMaps) && remoteMaps.length > 0) {
-            remoteMaps.forEach(rm => {
-              const existing = MAPS.find(m => cleanStr(m.name) === cleanStr(rm.name));
-              if (!existing) {
-                MAPS.push(rm);
-                addedCount++;
-              } else if (existing.src !== rm.src) {
-                existing.src = rm.src;
-                addedCount++;
-              }
-            });
-            localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
-          }
+        if (Array.isArray(remoteMaps) && remoteMaps.length > 0) {
+          remoteMaps.forEach(rm => {
+            let fullSrc = rm.src;
+            if (!fullSrc.startsWith("http")) {
+              fullSrc = "https://exprimes.github.io/dbd-maps/" + fullSrc.replace(/^\/+/, "");
+            }
+            const existing = MAPS.find(m => cleanStr(m.name) === cleanStr(rm.name));
+            if (!existing) {
+              MAPS.push({ ...rm, src: fullSrc });
+              addedCount++;
+            } else {
+              existing.src = fullSrc;
+            }
+          });
+          MAPS.sort((a, b) => a.name.localeCompare(b.name, "fr", { sensitivity: "base" }));
+          localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
         }
 
         renderMaps(MAPS);
@@ -1218,7 +1232,7 @@
         if (addedCount > 0) {
           showToast(`🎉 ${addedCount} nouvelle(s) carte(s) ajoutée(s) ! (${MAPS.length} cartes au total)`);
         } else {
-          showToast(`✅ Vos ${MAPS.length} cartes sont rechargées !`);
+          showToast(`✅ Vos ${MAPS.length} cartes sont parfaitement synchronisées !`);
         }
       } catch (e) {
         renderMaps(MAPS);
