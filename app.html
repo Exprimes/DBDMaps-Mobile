@@ -1468,18 +1468,26 @@
       } catch (e) {}
     }
 
-    window.addEventListener("pagehide", removeMobileTelemetryHeartbeat);
-    window.addEventListener("beforeunload", removeMobileTelemetryHeartbeat);
+    // Envoyer immédiatement le battement de cœur télémétrique
+    sendMobileTelemetryHeartbeat();
+
+    // Renvoyer le battement dès que l'utilisateur rouvre ou revient sur l'application iOS / Mobile
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        sendMobileTelemetryHeartbeat();
+      }
+    });
+    window.addEventListener("pageshow", () => sendMobileTelemetryHeartbeat());
+    window.addEventListener("focus", () => sendMobileTelemetryHeartbeat());
 
     // Vérifier discrètement les cartes et les mises à jour au lancement
     setTimeout(() => {
       syncMapsFromGitHub();
       checkUpdates(true);
-      sendMobileTelemetryHeartbeat();
     }, 1500);
 
-    // Battement de cœur en direct toutes les 45 secondes
-    setInterval(sendMobileTelemetryHeartbeat, 45000);
+    // Battement de cœur en direct toutes les 30 secondes
+    setInterval(sendMobileTelemetryHeartbeat, 30000);
 
     // Détection iOS Safari (hors mode autonome)
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.navigator.standalone) {
