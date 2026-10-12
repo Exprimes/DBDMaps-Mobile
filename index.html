@@ -274,6 +274,43 @@
       box-shadow: 0 8px 25px rgba(5, 150, 105, 0.6);
     }
 
+    /* Bouton iOS / iPhone */
+    .btn-ios {
+      background: rgba(255, 255, 255, 0.08);
+      color: #f3f4f6;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 13px 20px;
+    }
+    .btn-ios:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    /* Modal iOS */
+    .ios-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .ios-step-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .ios-step-text {
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #e5e7eb;
+    }
+    .ios-step-text strong {
+      color: #ffffff;
+    }
     /* SECTION CHANGELOG */
     .changelog-box {
       background: rgba(255, 255, 255, 0.03);
@@ -536,13 +573,13 @@
       <!-- COLONNE 2 : LOGICIEL POUR TÉLÉPHONE (ANDROID) -->
       <!-- ============================================== -->
       <div class="platform-card card-mobile">
-        <div class="platform-tag tag-mobile">POUR TÉLÉPHONE</div>
+        <div class="platform-tag tag-mobile">POUR SMARTPHONE & CONSOLE</div>
 
         <div class="platform-header">
           <div class="platform-icon">📱</div>
           <div>
-            <div class="platform-title">Version Téléphone (v1.0.2)</div>
-            <div class="platform-sub sub-mobile">Plateforme : Android (Mobile & Tablette)</div>
+            <div class="platform-title">Version Mobile (v1.0.2)</div>
+            <div class="platform-sub sub-mobile">Compatible : Android & Apple iOS (iPhone / iPad)</div>
           </div>
         </div>
 
@@ -552,21 +589,27 @@
 
         <ul class="features-list">
           <li><span class="check-mobile">✓</span> <strong>Joueurs Xbox & PlayStation :</strong> posez le téléphone à côté de la manette</li>
-          <li><span class="check-mobile">✓</span> <strong>Vérificateur de Mises à Jour :</strong> recherche et installe les MÀJ en 1 clic</li>
           <li><span class="check-mobile">✓</span> <strong>Lobby synchronisé :</strong> changez la carte pour toute votre équipe en direct</li>
           <li><span class="check-mobile">✓</span> <strong>Écran toujours allumé :</strong> ne s'éteint jamais pendant vos parties</li>
           <li><span class="check-mobile">✓</span> <strong>Tactile & Zoom précis :</strong> pincez à 2 doigts et glissez pour explorer</li>
-          <li><span class="check-mobile">✓</span> <strong>43 cartes HD embarquées :</strong> fonctionne 100% hors-ligne</li>
+          <li><span class="check-mobile">✓</span> <strong>43 cartes HD officielles :</strong> affichage instantané et fluide</li>
+          <li><span class="check-mobile">✓</span> <strong>Partage Custom en direct :</strong> recevez les plans de vos coéquipiers</li>
         </ul>
 
         <div class="btn-group">
-          <!-- TELECHARGEMENT APK MOBILE -->
+          <!-- BOUTON ANDROID APK -->
           <a href="https://github.com/Exprimes/dbd-maps/releases/download/v1.0.2/DBDMaps.apk" 
              download="DBDMaps.apk" 
              class="download-btn btn-mobile">
-            <span class="btn-main-text">📱 Télécharger pour Téléphone (.APK)</span>
-            <span class="btn-sub-text">Fichier Android APK • Installation facile</span>
+            <span class="btn-main-text">🤖 Télécharger pour Android (.APK)</span>
+            <span class="btn-sub-text">Fichier certifié • Installation rapide</span>
           </a>
+
+          <!-- BOUTON IPHONE IOS PWA -->
+          <button class="download-btn btn-ios" onclick="openIosModal()">
+            <span class="btn-main-text">🍏 Installer sur iPhone / iPad (iOS)</span>
+            <span class="btn-sub-text">Sans téléchargement • Installation écran d'accueil</span>
+          </button>
         </div>
       </div>
 
@@ -610,11 +653,15 @@
           <div class="step-text">Cliquez sur le bouton bleu pour télécharger <strong>DBDMaps.exe</strong>. Lancez-le et retrouvez son emplacement exact à tout moment dans l'onglet <strong>Paramètres ➔ Emplacement du logiciel</strong>.</div>
         </div>
         <div class="step-box">
-          <div class="step-num">2. Sur Téléphone Android</div>
-          <div class="step-text">Cliquez sur le bouton vert depuis votre téléphone pour télécharger <strong>DBDMaps.apk</strong>. Ouvrez le fichier téléchargé et validez l'installation.</div>
+          <div class="step-num">2. Sur Android (.APK)</div>
+          <div class="step-text">Cliquez sur <strong>Télécharger pour Android (.APK)</strong>. Ouvrez le fichier téléchargé et validez l'installation en 1 clic.</div>
         </div>
         <div class="step-box">
-          <div class="step-num">3. Jouer en Équipe (Lobby)</div>
+          <div class="step-num">3. Sur iPhone (iOS)</div>
+          <div class="step-text">Ouvrez le site avec Safari, appuyez sur <strong>Partager ⬆️</strong> puis sur <strong>« Sur l'écran d'accueil ➕ »</strong> pour lancer l'application en plein écran.</div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">4. Jouer en Équipe (Lobby)</div>
           <div class="step-text">Dans l'onglet <strong>Lobby</strong>, un joueur crée un code (ex: <em>ABC12</em>) et les autres le rejoignent. Dès qu'un joueur clique sur une carte ou que l'OCR la détecte, elle s'affiche chez tout le monde !</div>
         </div>
       </div>
@@ -623,6 +670,50 @@
     <footer>
       <p>DBD MAP • Créé par <strong>Exprimes</strong> • Dédié à tous les joueurs Dead by Daylight (PC, Xbox, PlayStation & Mobile)</p>
     </footer>
+  </div>
+
+  <!-- MODAL INSTALLATION IPHONE IOS -->
+  <div id="iosModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <div class="modal-title">🍏 Comment installer sur iPhone & iPad ?</div>
+        <button class="modal-close" onclick="closeIosModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 14px; color: #d1d5db; font-size: 0.9rem;">
+          Sur iPhone, Apple ne permet pas de télécharger un fichier APK, mais vous pouvez installer <strong>l'application officielle directement sur votre écran d'accueil</strong> en 3 étapes très simples :
+        </p>
+
+        <div class="ios-step">
+          <div class="ios-step-icon">1️⃣</div>
+          <div class="ios-step-text">
+            Ouvrez ce site internet dans le navigateur <strong>Safari</strong> sur votre iPhone ou iPad.
+          </div>
+        </div>
+
+        <div class="ios-step">
+          <div class="ios-step-icon">2️⃣</div>
+          <div class="ios-step-text">
+            En bas de Safari, appuyez sur le bouton de <strong>Partage</strong> (le carré avec la flèche vers le haut <strong>⬆️</strong>).
+          </div>
+        </div>
+
+        <div class="ios-step">
+          <div class="ios-step-icon">3️⃣</div>
+          <div class="ios-step-text">
+            Faites défiler vers le bas et sélectionnez <strong>« Sur l'écran d'accueil »</strong> (avec l'icône <strong>➕</strong>), puis validez en appuyant sur <strong>Ajouter</strong> en haut à droite.
+          </div>
+        </div>
+
+        <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; border-radius: 10px; padding: 12px; margin-top: 14px; text-align: left; font-size: 0.85rem; color: #a7f3d0;">
+          ✨ <strong>C'est prêt !</strong> L'icône DBD MAP apparaît sur votre écran d'accueil. En cliquant dessus, l'application s'ouvre en <strong>plein écran sans barre Safari</strong> avec les 43 cartes HD et le Lobby synchronisé !
+        </div>
+      </div>
+      <div class="modal-actions">
+        <a href="app.html" class="btn-modal-dl" style="background:#059669; text-decoration:none;">🚀 Ouvrir l'application iOS maintenant</a>
+        <button class="btn-modal-close" onclick="closeIosModal()">Fermer</button>
+      </div>
+    </div>
   </div>
 
   <!-- MODAL CHOISIR EMPLACEMENT -->
@@ -651,6 +742,12 @@
   </div>
 
   <script>
+    function openIosModal() {
+      document.getElementById('iosModal').style.display = 'flex';
+    }
+    function closeIosModal() {
+      document.getElementById('iosModal').style.display = 'none';
+    }
     function openLocationModal(e, url, filename) {
       e.preventDefault();
       const modal = document.getElementById("locationModal");
