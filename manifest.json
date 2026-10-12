@@ -11,7 +11,7 @@
     "background_color":  "#0d1117",
     "theme_color":  "#161b22",
     "name":  "DBD MAP",
-    "start_url":  "./app.html",
+    "start_url":  "./app.html?v=1.0.2",
     "display":  "standalone",
     "short_name":  "DBD MAP"
 }

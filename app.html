@@ -7,7 +7,10 @@
   <meta name="apple-mobile-web-app-title" content="DBD MAP">
   <link rel="apple-touch-icon" href="app_icon.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>DBD MAP Mobile</title>
   <style>
     * {
@@ -30,6 +33,7 @@
     header {
       background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
       padding: 12px 16px;
+      padding-top: max(12px, env(safe-area-inset-top));
       border-bottom: 1px solid #30363d;
       position: sticky;
       top: 0;
@@ -939,6 +943,7 @@
       translateX = 0;
       translateY = 0;
       updateTransform();
+      showToast("🔍 Zoom réinitialisé");
     }
 
     function updateTransform() {
@@ -1172,14 +1177,27 @@
     // ==========================================
     async function syncMapsFromGitHub() {
       btnHeaderSync.classList.add("spinning");
-      showToast("🔄 Vérification des cartes...");
+      showToast("🔄 Rafraîchissement des cartes...");
+
+      // 1. Réinitialiser la recherche si le joueur était sur un filtre
+      if (searchInput && searchInput.value) {
+        searchInput.value = "";
+        if (clearBtn) clearBtn.style.display = "none";
+      }
+
+      // 2. Toujours afficher immédiatement les cartes locales
+      if (!MAPS || MAPS.length === 0) {
+        MAPS = [...DEFAULT_MAPS];
+      }
+      renderMaps(MAPS);
+
       try {
         const mapsUrl = "https://raw.githubusercontent.com/Exprimes/dbd-maps/main/maps.json?t=" + Date.now();
-        const resp = await fetch(mapsUrl);
+        const resp = await fetch(mapsUrl, { cache: "no-store" });
         let addedCount = 0;
         if (resp.ok) {
           const remoteMaps = await resp.json();
-          if (Array.isArray(remoteMaps)) {
+          if (Array.isArray(remoteMaps) && remoteMaps.length > 0) {
             remoteMaps.forEach(rm => {
               const existing = MAPS.find(m => cleanStr(m.name) === cleanStr(rm.name));
               if (!existing) {
@@ -1190,26 +1208,35 @@
                 addedCount++;
               }
             });
-            if (addedCount > 0) {
-              localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
-              renderMaps(MAPS);
-            }
+            localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
           }
         }
+
+        renderMaps(MAPS);
 
         if (addedCount > 0) {
           showToast(`🎉 ${addedCount} nouvelle(s) carte(s) ajoutée(s) ! (${MAPS.length} cartes au total)`);
         } else {
-          showToast(`✅ Vos ${MAPS.length} cartes sont parfaitement à jour !`);
+          showToast(`✅ Vos ${MAPS.length} cartes sont rechargées !`);
         }
       } catch (e) {
-        showToast(`✅ Vos ${MAPS.length} cartes sont disponibles.`);
+        renderMaps(MAPS);
+        showToast(`✅ Vos ${MAPS.length} cartes sont prêtes.`);
       } finally {
         setTimeout(() => btnHeaderSync.classList.remove("spinning"), 600);
       }
     }
 
-    btnHeaderSync.addEventListener("click", syncMapsFromGitHub);
+    let lastSyncTap = 0;
+    btnHeaderSync.addEventListener("click", () => {
+      const now = Date.now();
+      if (now - lastSyncTap < 500) {
+        window.location.reload();
+        return;
+      }
+      lastSyncTap = now;
+      syncMapsFromGitHub();
+    });
 
 
     // ==========================================
