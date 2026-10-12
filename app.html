@@ -1048,13 +1048,6 @@
 
     const LOBBY_API_KEY = "731ciu40";
 
-    function startLobbyListener(code) {
-      stopLobbyListener();
-      currentLobbyCode = code.toUpperCase();
-      localStorage.setItem("dbd_mobile_lobby_code", currentLobbyCode);
-      updateLobbyUI();
-      showToast("✅ Connecté au Lobby " + currentLobbyCode + " !");
-
     async function pollLobbyOnce() {
       if (!currentLobbyCode) return;
       try {
