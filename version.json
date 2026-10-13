@@ -4,9 +4,9 @@
   "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.4/DBDMaps.apk",
   "changelog": "D\u00E9tection automatique OCR 100% intelligente : suppression des faux positifs en jeu (perks, pseudos, scores), suppression des boutons manuels de d\u00E9verrouillage et transition automatique instantan\u00E9e entre les parties.",
   "admin_alert": {
-    "enabled": false,
+    "enabled": true,
     "min_version": "1.0.4",
-    "message": "",
+    "message": "Une nouvelle mise \u00E0 jour importante de DBD MAP est disponible ! Veuillez mettre \u00E0 jour le logiciel pour continuer \u00E0 profiter de toutes les cartes et fonctionnalit\u00E9s.",
     "date": "14/10/2026 00:16"
   }
 }
