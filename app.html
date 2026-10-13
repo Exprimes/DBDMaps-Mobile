@@ -1308,21 +1308,40 @@
         if (hasNew) {
           btnHeaderUpdate.classList.add("has-update");
           updateResultArea.style.display = "block";
+
+          let alertBanner = "";
+          if (vData.admin_alert && vData.admin_alert.enabled && vData.admin_alert.message) {
+            alertBanner = `
+              <div style="background: rgba(231, 76, 60, 0.22); border: 1px solid #e74c3c; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; text-align: left;">
+                <div style="font-weight: 800; color: #ff7b72; font-size: 0.85rem; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                  <span>🔔</span> MESSAGE DE L'ADMINISTRATEUR :
+                </div>
+                <div style="font-size: 0.82rem; color: #f0f6fc; line-height: 1.4;">
+                  ${vData.admin_alert.message}
+                </div>
+              </div>
+            `;
+          }
+
           updateResultArea.innerHTML = `
             <div style="background: rgba(231, 76, 60, 0.12); border: 1px solid #e74c3c; border-radius: 10px; padding: 14px; text-align: left;">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
                 <span style="font-weight:800; color:#ff7b72; font-size:0.95rem;">🚀 Version v${vData.version} disponible !</span>
                 <span class="badge" style="background:#e74c3c; color:#fff; font-size:0.7rem; font-weight:800;">NOUVEAU</span>
               </div>
+              ${alertBanner}
               <p style="font-size:0.8rem; color:#c9d1d9; margin-bottom:12px; line-height:1.4;">
                 ${vData.changelog || "Nouvelles fonctionnalités et améliorations disponibles."}
               </p>
-              <a href="${vData.apk_download_url || 'https://github.com/Exprimes/dbd-maps/releases/download/v1.0.0/DBDMaps.apk'}" target="_blank" class="btn btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:10px; border-radius:8px; width:100%;">
+              <a href="${vData.apk_download_url || 'https://github.com/Exprimes/dbd-maps/releases/download/v1.0.4/DBDMaps.apk'}" target="_blank" class="btn btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:10px; border-radius:8px; width:100%;">
                 📥 Télécharger la mise à jour (APK)
               </a>
             </div>
           `;
           showToast("🚀 Nouvelle version v" + vData.version + " disponible !");
+          if (silent && vData.admin_alert && vData.admin_alert.enabled) {
+            updateModal.classList.add("active");
+          }
         } else {
           btnHeaderUpdate.classList.remove("has-update");
           updateResultArea.style.display = "block";
