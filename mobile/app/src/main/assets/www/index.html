@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="DBD MAP">
+  <link rel="apple-touch-icon" href="app_icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>DBD MAP Mobile</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background-color: #0d1117;
+      color: #e6edf3;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+      padding: 12px 16px;
+      padding-top: max(12px, env(safe-area-inset-top));
+      border-bottom: 1px solid #30363d;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+    .title-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .title-group h1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #e74c3c;
+      letter-spacing: 0.5px;
+    }
+    .title-group span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #f1c40f;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-header-lobby {
+      background-color: #21262d;
+      color: #58a6ff;
+      border: 1px solid #30363d;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-header-lobby.active {
+      background-color: #238636;
+      color: #fff;
+      border-color: #2ea043;
+    }
+    .btn-header-sync {
+      background-color: #21262d;
+      color: #8b949e;
+      border: 1px solid #30363d;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .btn-header-sync:active {
+      transform: rotate(180deg);
+      transition: transform 0.3s;
+    }
+    .btn-header-sync.spinning {
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .btn-header-update {
+      background-color: #21262d;
+      color: #f1c40f;
+      border: 1px solid #30363d;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .btn-header-update:active {
+      transform: scale(0.92);
+    }
+    .btn-header-update.has-update::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      background-color: #e74c3c;
+      border-radius: 50%;
+      border: 2px solid #0d1117;
+      animation: pulse-dot 1.5s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { transform: scale(0.9); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(0.9); }
+    }
+    footer {
+      text-align: center;
+      padding: 18px 14px;
+      font-size: 0.75rem;
+      color: #8b949e;
+      border-top: 1px solid #21262d;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-update-btn {
+      background: #161b22;
+      border: 1px solid #30363d;
+      color: #58a6ff;
+      border-radius: 14px;
+      padding: 6px 14px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .footer-update-btn:active {
+      background: #21262d;
+      transform: scale(0.96);
+    }
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      background-color: #161b22;
+      color: #fff;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box input:focus {
+      border-color: #58a6ff;
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 0.9rem;
+      color: #8b949e;
+    }
+    .clear-btn {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #8b949e;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: none;
+      padding: 4px;
+    }
+    main {
+      flex: 1;
+      padding: 14px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 0 2px;
+    }
+    .section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .maps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .map-card {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .map-card:active {
+      transform: scale(0.97);
+      border-color: #58a6ff;
+    }
+    .map-thumb-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: #0b0e14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .map-info {
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .map-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      line-height: 1.2;
+    }
+    .map-creator {
+      font-size: 0.68rem;
+      color: #8b949e;
+    }
+    .no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: #8b949e;
+      font-size: 0.95rem;
+      display: none;
+    }
+    footer {
+      background-color: #161b22;
+      border-top: 1px solid #30363d;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.72rem;
+      color: #8b949e;
+    }
+
+    /* MODAL LOBBY MANAGER */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-card {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 380px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    .modal-header {
+      padding: 14px 16px;
+      background-color: #21262d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #30363d;
+    }
+    .modal-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: #8b949e;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 2px 6px;
+    }
+    .modal-body {
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .lobby-desc {
+      font-size: 0.78rem;
+      color: #8b949e;
+      line-height: 1.4;
+    }
+    .lobby-active-box {
+      background-color: #0d1117;
+      border: 1px solid #238636;
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+      display: none;
+    }
+    .lobby-code-display {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: #2ea043;
+      margin: 4px 0 6px 0;
+      font-family: monospace;
+    }
+    .lobby-sync-msg {
+      font-size: 0.75rem;
+      color: #8b949e;
+    }
+    .input-code-group {
+      display: flex;
+      gap: 8px;
+    }
+    .input-code-group input {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      background-color: #0d1117;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      outline: none;
+    }
+    .input-code-group input:focus {
+      border-color: #58a6ff;
+    }
+    .btn {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.15s;
+    }
+    .btn-primary {
+      background-color: #238636;
+      color: #fff;
+    }
+    .btn-primary:active {
+      background-color: #2ea043;
+    }
+    .btn-secondary {
+      background-color: #21262d;
+      color: #c9d1d9;
+      border: 1px solid #30363d;
+    }
+    .btn-secondary:active {
+      background-color: #30363d;
+    }
+    .btn-danger {
+      background-color: #da3633;
+      color: #fff;
+    }
+    .divider {
+      text-align: center;
+      position: relative;
+      margin: 2px 0;
+    }
+    .divider::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #30363d;
+    }
+    .divider span {
+      position: relative;
+      background-color: #161b22;
+      padding: 0 10px;
+      font-size: 0.7rem;
+      color: #8b949e;
+      text-transform: uppercase;
+    }
+
+    /* VUE PLEIN ÉCRAN CARTE (VIEWER) */
+    #viewerModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #000;
+      z-index: 999;
+      display: none;
+      flex-direction: column;
+    }
+    .viewer-header {
+      background: rgba(13, 17, 23, 0.94);
+      backdrop-filter: blur(10px);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 10;
+    }
+    .viewer-title-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 65%;
+    }
+    .viewer-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .viewer-badge-sync {
+      font-size: 0.65rem;
+      color: #2ea043;
+      font-weight: 600;
+    }
+    .viewer-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-icon {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn-icon:active {
+      background: #30363d;
+    }
+    .viewer-body {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      touch-action: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #06090e;
+    }
+    #viewerImg {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transform-origin: center center;
+      will-change: transform;
+      transition: transform 0.05s ease-out;
+    }
+    .viewer-footer-tip {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      color: #c9d1d9;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* TOAST FLOATING NOTIFICATION */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background-color: #21262d;
+      border: 1px solid #30363d;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 24px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNIÈRE INSTALLATION IOS PLEIN ÉCRAN -->
+  <div id="iosInstallBanner" style="display:none; background: #064e3b; color: #d1fae5; border-bottom: 1px solid #059669; padding: 10px 14px; font-size: 0.82rem; align-items: center; justify-content: space-between; gap: 10px; z-index: 999;">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:1.1rem;">📲</span>
+      <span><strong>Installer en Plein Écran :</strong> Safari ➔ Partager <strong>⬆️</strong> ➔ <em>« Sur l'écran d'accueil »</em> (gardez coché <strong>« Ouvrir comme app web » 🟢</strong>) ➔ <strong>Ajouter</strong></span>
+    </div>
+    <button onclick="document.getElementById('iosInstallBanner').style.display='none'" style="background:none; border:none; color:#a7f3d0; font-size:1.2rem; cursor:pointer; padding:0 4px;">&times;</button>
+  </div>
+
+  <header>
+    <div class="top-bar">
+      <div class="brand">
+        <img src="app_icon.png" alt="Logo">
+        <div class="title-group">
+          <h1>DBD MAP</h1>
+          <span>By Exprimes • Console & Mobile</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-header-lobby" id="btnHeaderLobby">
+          <span id="lobbyStatusDot">⚪</span>
+          <span id="lobbyStatusText">Lobby</span>
+        </button>
+        <button class="btn-header-sync" id="btnHeaderSync" title="Vérifier nouvelles cartes">🔄</button>
+        <button class="btn-header-update" id="btnHeaderUpdate" title="Vérifier les mises à jour">🚀</button>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Rechercher une carte..." autocomplete="off">
+      <button class="clear-btn" id="clearBtn">✕</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-header">
+      <span class="section-title">Cartes Disponibles</span>
+      <span class="badge" id="mapCountBadge">43 Cartes</span>
+    </div>
+    <div class="maps-grid" id="mapsGrid"></div>
+    <div class="no-results" id="noResults">
+      Aucune carte ne correspond à votre recherche.
+    </div>
+  </main>
+
+  <footer>
+    <span id="footerVersionText">DBD MAP Mobile • v1.0.4</span>
+    <button class="footer-update-btn" id="btnFooterUpdate">
+      <span>🚀</span>
+      <span>Vérifier les mises à jour</span>
+    </button>
+  </footer>
+
+  <!-- MODAL VÉRIFICATEUR DE MISE À JOUR -->
+  <div class="modal-overlay" id="updateModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-title">🚀 Mises à Jour & Version</span>
+        <button class="modal-close" id="btnCloseUpdate">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="lobby-desc" style="margin-bottom:12px;">
+          Vérifiez si une nouvelle version de l'application DBD MAP Mobile est disponible.
+        </p>
+
+        <div style="background:#161b22; border:1px solid #30363d; border-radius:10px; padding:12px; margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.8rem; color:#8b949e; font-weight:600;">Version actuelle installée :</span>
+            <span class="badge" id="currentVersionBadge" style="background:#238636; color:#fff; font-size:0.8rem; font-weight:800; padding:2px 8px; border-radius:10px;">v1.0.4</span>
+          </div>
+          <div style="margin-top:8px; font-size:0.75rem; color:#8b949e;" id="updateLastCheckTxt">
+            Dernière vérification : non effectuée
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="btnCheckUpdateManual" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;">
+          <span id="updateIcon">🔍</span>
+          <span id="updateBtnText">Rechercher une mise à jour</span>
+        </button>
+
+        <!-- Zone de résultat dynamique -->
+        <div id="updateResultArea" style="margin-top:14px; display:none;"></div>
+
+        <div style="margin-top:16px; border-top:1px solid #21262d; padding-top:12px; font-size:0.75rem; color:#8b949e; line-height:1.4;">
+          💡 <em>Les mises à jour apportent de nouvelles cartes, des optimisations et améliorent la synchronisation du Lobby Manager.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL LOBBY MANAGER -->
+  <div class="modal-overlay" id="lobbyModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-title">👥 Lobby Manager</span>
+        <button class="modal-close" id="btnCloseLobby">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="lobby-desc">
+          Rejoignez ou créez un Lobby : <strong>n'importe quel joueur (PC ou mobile) peut changer la carte pour tout le monde en direct !</strong>
+        </p>
+
+        <!-- Affichage quand connecté -->
+        <div class="lobby-active-box" id="lobbyActiveBox">
+          <span style="font-size:0.75rem; color:#8b949e; text-transform:uppercase; font-weight:700;">Lobby Actif</span>
+          <div class="lobby-code-display" id="lobbyCodeDisplay">------</div>
+          <div class="lobby-sync-msg" id="lobbySyncMsg">En attente d'une carte du Lobby...</div>
+          <button class="btn btn-danger" id="btnLeaveLobby" style="margin-top:12px; width:100%;">Quitter le Lobby</button>
+        </div>
+
+        <!-- Formulaire de connexion -->
+        <div id="lobbyJoinForm">
+          <label style="font-size:0.75rem; font-weight:700; color:#c9d1d9; margin-bottom:4px; display:block;">Rejoindre un code de Lobby :</label>
+          <div class="input-code-group">
+            <input type="text" id="inputLobbyCode" placeholder="ABC123" maxlength="6" autocomplete="off">
+            <button class="btn btn-primary" id="btnJoinLobby">Rejoindre</button>
+          </div>
+
+          <div class="divider" style="margin: 14px 0;">
+            <span>OU</span>
+          </div>
+
+          <button class="btn btn-secondary" id="btnCreateLobby" style="width:100%;">Créer un nouveau Lobby</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PLEIN ÉCRAN CARTE -->
+  <div id="viewerModal">
+    <div class="viewer-header">
+      <div class="viewer-title-box">
+        <span class="viewer-title" id="viewerTitle">Carte</span>
+        <span class="viewer-badge-sync" id="viewerSyncBadge" style="display:none;">⚡ Synchronisé via Lobby</span>
+      </div>
+      <div class="viewer-actions">
+        <button class="btn-icon" id="btnResetZoom" title="Réinitialiser zoom">↺</button>
+        <button class="btn-icon" id="btnCloseViewer" title="Fermer">✕</button>
+      </div>
+    </div>
+    <div class="viewer-body" id="viewerBody">
+      <img id="viewerImg" src="" alt="Carte">
+      <div class="viewer-footer-tip">💡 Pincez pour zoomer • Glissez pour bouger</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toastMsg">Notification</div>
+
+  <script>
+    // Liste initiale des cartes françaises embarquées en local
+    let DEFAULT_MAPS = [
+      { name: "Abattoir Putride", creator: "Exprimes", src: "maps/Exprimes/Abattoir Putride.png" },
+      { name: "Aire de Corbeaux", creator: "Exprimes", src: "maps/Exprimes/Aire de Corbeaux.png" },
+      { name: "Atelier Misérable", creator: "Exprimes", src: "maps/Exprimes/Atelier Misérable.png" },
+      { name: "Cabane du Sang", creator: "Exprimes", src: "maps/Exprimes/Cabane du Sang.png" },
+      { name: "Cellier Sinistre", creator: "Exprimes", src: "maps/Exprimes/Cellier Sinistre.png" },
+      { name: "Centre de Traitement Léry", creator: "Exprimes", src: "maps/Exprimes/Centre de Traitement Léry.png" },
+      { name: "Champs Pourris", creator: "Exprimes", src: "maps/Exprimes/Champs Pourris.png" },
+      { name: "Chapelle du Père Campbell", creator: "Exprimes", src: "maps/Exprimes/Chapelle du Père Campbell.png" },
+      { name: "Complexe Souterrain Hawkins", creator: "Exprimes", src: "maps/Exprimes/Complexe Souterrain Hawkins.png" },
+      { name: "Dernière Demeure d'Azarov", creator: "Exprimes", src: "maps/Exprimes/Dernière Demeure d'Azarov.png" },
+      { name: "École Maternelle de Badham", creator: "Exprimes", src: "maps/Exprimes/École Maternelle de Badham.png" },
+      { name: "École Primaire Midwich", creator: "Exprimes", src: "maps/Exprimes/École Primaire Midwich.png" },
+      { name: "Entrepôt de Charbon", creator: "Exprimes", src: "maps/Exprimes/Entrepôt de Charbon.png" },
+      { name: "Entrepôt Grondant", creator: "Exprimes", src: "maps/Exprimes/Entrepôt Grondant.png" },
+      { name: "Épave du Nostromo", creator: "Exprimes", src: "maps/Exprimes/Épave du Nostromo.png" },
+      { name: "Étable en Ruine", creator: "Exprimes", src: "maps/Exprimes/Étable en Ruine.png" },
+      { name: "Fonderie de Souffrance", creator: "Exprimes", src: "maps/Exprimes/Fonderie de Souffrance.png" },
+      { name: "Forêt Profonde", creator: "Exprimes", src: "maps/Exprimes/Forêt Profonde.png" },
+      { name: "Freddy Fazbear's Pizza", creator: "Exprimes", src: "maps/Exprimes/Freddy Fazbear's Pizza.png" },
+      { name: "Gas Haven", creator: "Exprimes", src: "maps/Exprimes/Gas Haven.png" },
+      { name: "Illusion du Farceur", creator: "Exprimes", src: "maps/Exprimes/Illusion du Farceur.png" },
+      { name: "Jardin de la Joie", creator: "Exprimes", src: "maps/Exprimes/Jardin de la Joie.png" },
+      { name: "La Ferme Thompson", creator: "Exprimes", src: "maps/Exprimes/La Ferme Thompson.png" },
+      { name: "La Maison Maternelle", creator: "Exprimes", src: "maps/Exprimes/La Maison Maternelle.png" },
+      { name: "La Place Dévastée", creator: "Exprimes", src: "maps/Exprimes/La Place Dévastée.png" },
+      { name: "Le Jeu", creator: "Exprimes", src: "maps/Exprimes/Le Jeu.png" },
+      { name: "Le Pâle Rose", creator: "Exprimes", src: "maps/Exprimes/Le Pâle Rose.png" },
+      { name: "Le Temple de Purgation", creator: "Exprimes", src: "maps/Exprimes/Le Temple de Purgation.png" },
+      { name: "Mine du Lac d'Ormond", creator: "Exprimes", src: "maps/Exprimes/Mine du Lac d'Ormond.png" },
+      { name: "Place de Greenville", creator: "Exprimes", src: "maps/Exprimes/Place de Greenville.png" },
+      { name: "Puits d'Asphyxie", creator: "Exprimes", src: "maps/Exprimes/Puits d'Asphyxie.png" },
+      { name: "Refuge Perdu", creator: "Exprimes", src: "maps/Exprimes/Refuge Perdu.png" },
+      { name: "Résidence Familiale", creator: "Exprimes", src: "maps/Exprimes/Résidence Familiale.png" },
+      { name: "RPD East", creator: "Exprimes", src: "maps/Exprimes/RPD East.png" },
+      { name: "RPD West", creator: "Exprimes", src: "maps/Exprimes/RPD West.png" },
+      { name: "Ruines Oubliées", creator: "Exprimes", src: "maps/Exprimes/Ruines Oubliées.png" },
+      { name: "Sables Morts", creator: "Exprimes", src: "maps/Exprimes/Sables Morts.png" },
+      { name: "Salle des Aliénés", creator: "Exprimes", src: "maps/Exprimes/Salle des Aliénés.png" },
+      { name: "Saloon de Dead Dawg", creator: "Exprimes", src: "maps/Exprimes/Saloon de Dead Dawg.png" },
+      { name: "Sanctuaire du Courroux", creator: "Exprimes", src: "maps/Exprimes/Sanctuaire du Courroux.png" },
+      { name: "Site d'Atterrissage de Toba", creator: "Exprimes", src: "maps/Exprimes/Site d'Atterrissage de Toba.png" },
+      { name: "Station du Mont Ormond", creator: "Exprimes", src: "maps/Exprimes/Station du Mont Ormond.png" },
+      { name: "Terrain de la Casse", creator: "Exprimes", src: "maps/Exprimes/Terrain de la Casse.png" },
+      { name: "Vallon des Tourments", creator: "Exprimes", src: "maps/Exprimes/Vallon des Tourments.png" }
+    ];
+
+    // Charger les cartes sauvegardées / synchronisées dynamiquement
+    let MAPS = [...DEFAULT_MAPS];
+
+    // Migration automatique pour nettoyer les anciens liens 404 (Exprimes/DBDMaps)
+    MAPS.forEach(m => {
+      if (!m.src || m.src.includes('Exprimes/DBDMaps') || m.src.includes('raw.githubusercontent.com')) {
+        m.src = 'maps/Exprimes/' + m.name + '.png';
+      }
+    });
+    try {
+      const saved = localStorage.getItem("dbd_custom_maps");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Fusionner sans doublons
+          parsed.forEach(p => {
+            if (!MAPS.some(m => cleanStr(m.name) === cleanStr(p.name))) {
+              MAPS.push(p);
+            }
+          });
+        }
+      }
+    } catch (e) {}
+
+    const mapsGrid = document.getElementById("mapsGrid");
+    const noResults = document.getElementById("noResults");
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearBtn");
+    const mapCountBadge = document.getElementById("mapCountBadge");
+
+    const viewerModal = document.getElementById("viewerModal");
+    const viewerTitle = document.getElementById("viewerTitle");
+    const viewerSyncBadge = document.getElementById("viewerSyncBadge");
+    const viewerImg = document.getElementById("viewerImg");
+    const btnCloseViewer = document.getElementById("btnCloseViewer");
+    const btnResetZoom = document.getElementById("btnResetZoom");
+    const viewerBody = document.getElementById("viewerBody");
+
+    const lobbyModal = document.getElementById("lobbyModal");
+    const btnHeaderLobby = document.getElementById("btnHeaderLobby");
+    const btnCloseLobby = document.getElementById("btnCloseLobby");
+    const lobbyStatusDot = document.getElementById("lobbyStatusDot");
+    const lobbyStatusText = document.getElementById("lobbyStatusText");
+    const lobbyActiveBox = document.getElementById("lobbyActiveBox");
+    const lobbyJoinForm = document.getElementById("lobbyJoinForm");
+    const lobbyCodeDisplay = document.getElementById("lobbyCodeDisplay");
+    const lobbySyncMsg = document.getElementById("lobbySyncMsg");
+    const inputLobbyCode = document.getElementById("inputLobbyCode");
+    const btnJoinLobby = document.getElementById("btnJoinLobby");
+    const btnCreateLobby = document.getElementById("btnCreateLobby");
+    const btnLeaveLobby = document.getElementById("btnLeaveLobby");
+    const btnHeaderSync = document.getElementById("btnHeaderSync");
+    const toastMsg = document.getElementById("toastMsg");
+
+    function showToast(text) {
+      toastMsg.textContent = text;
+      toastMsg.classList.add("show");
+      setTimeout(() => toastMsg.classList.remove("show"), 3500);
+    }
+
+    function cleanStr(s) {
+      return (s || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    function compareVersions(v1, v2) {
+      const p1 = (v1 || "0").split(".").map(Number);
+      const p2 = (v2 || "0").split(".").map(Number);
+      const len = Math.max(p1.length, p2.length);
+      for (let i = 0; i < len; i++) {
+        const num1 = p1[i] || 0;
+        const num2 = p2[i] || 0;
+        if (num1 > num2) return 1;
+        if (num1 < num2) return -1;
+      }
+      return 0;
+    }
+
+    function renderMaps(list) {
+      mapsGrid.innerHTML = "";
+      if (list.length === 0) {
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
+        list.forEach(map => {
+          const card = document.createElement("div");
+          card.className = "map-card";
+          card.innerHTML = `
+            <div class="map-thumb-wrap">
+              <img src="${map.src}" alt="${map.name}" loading="lazy" onerror="if(!this.dataset.retry){this.dataset.retry='1';const s=this.getAttribute('src')||'';this.src=s.startsWith('http')?s:('https://exprimes.github.io/dbd-maps/'+s.replace(/^\/+/,''));}else{this.src='app_icon.png';}">
+            </div>
+            <div class="map-info">
+              <span class="map-title">${map.name}</span>
+              <span class="map-creator">${map.creator}</span>
+            </div>
+          `;
+          card.onclick = () => openViewer(map, false);
+          mapsGrid.appendChild(card);
+        });
+      }
+      mapCountBadge.textContent = list.length + (list.length > 1 ? " Cartes" : " Carte");
+    }
+
+    renderMaps(MAPS);
+
+    // Recherche en direct
+    searchInput.addEventListener("input", () => {
+      const q = cleanStr(searchInput.value.trim());
+      clearBtn.style.display = searchInput.value ? "block" : "none";
+      if (!q) {
+        renderMaps(MAPS);
+        return;
+      }
+      const filtered = MAPS.filter(m => cleanStr(m.name).includes(q) || cleanStr(m.creator).includes(q));
+      renderMaps(filtered);
+    });
+
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      clearBtn.style.display = "none";
+      renderMaps(MAPS);
+      searchInput.focus();
+    });
+
+    // --- GESTION DU VIEWER & GESTURES TACTILES ---
+    let scale = 1;
+    let translateX = 0;
+    let translateY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let initialDistance = 0;
+    let initialScale = 1;
+
+    function openViewer(map, fromSync) {
+      viewerTitle.textContent = map.name;
+      viewerImg.onerror = function() {
+        if (!this.dataset.triedFb) {
+          this.dataset.triedFb = "1";
+          this.src = "maps/Exprimes/" + encodeURIComponent(map.name + ".png");
+        }
+      };
+      viewerImg.dataset.triedFb = "";
+      viewerImg.src = map.src;
+      viewerSyncBadge.style.display = fromSync ? "block" : "none";
+      resetZoom();
+      viewerModal.style.display = "flex";
+      if ("wakeLock" in navigator) {
+        try { navigator.wakeLock.request("screen"); } catch (e) {}
+      }
+
+      // Si on est dans un Lobby et qu'on a sélectionné la carte soi-même : diffuser à tout le monde !
+      if (!fromSync && currentLobbyCode) {
+        lastSyncedMapName = map.name;
+        fetch(`https://keyvalue.immanuel.co/api/KeyVal/UpdateValue/731ciu40/${currentLobbyCode}/${encodeURIComponent(map.name)}`, { method: "POST" })
+          .catch(() => {});
+        showToast("📤 Carte diffusée au Lobby : " + map.name);
+      }
+    }
+
+    function closeViewer() {
+      viewerModal.style.display = "none";
+      viewerImg.src = "";
+    }
+
+    function resetZoom() {
+      scale = 1;
+      translateX = 0;
+      translateY = 0;
+      updateTransform();
+      showToast("🔍 Zoom réinitialisé");
+    }
+
+    function updateTransform() {
+      viewerImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    btnCloseViewer.addEventListener("click", closeViewer);
+    btnResetZoom.addEventListener("click", resetZoom);
+
+    // Double tap pour zoomer ou réinitialiser
+    let lastTap = 0;
+    viewerBody.addEventListener("touchend", (e) => {
+      const now = Date.now();
+      if (now - lastTap < 300) {
+        if (scale > 1.2) {
+          resetZoom();
+        } else {
+          scale = 2.2;
+          updateTransform();
+        }
+      }
+      lastTap = now;
+    });
+
+    viewerBody.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - translateX;
+        startY = e.touches[0].clientY - translateY;
+      } else if (e.touches.length === 2) {
+        isDragging = false;
+        initialDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        initialScale = scale;
+      }
+    });
+
+    viewerBody.addEventListener("touchmove", (e) => {
+      e.preventDefault();
+      if (e.touches.length === 1 && isDragging) {
+        translateX = e.touches[0].clientX - startX;
+        translateY = e.touches[0].clientY - startY;
+        updateTransform();
+      } else if (e.touches.length === 2) {
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        if (initialDistance > 0) {
+          scale = Math.min(Math.max(initialScale * (dist / initialDistance), 0.8), 6);
+          updateTransform();
+        }
+      }
+    }, { passive: false });
+
+    viewerBody.addEventListener("touchend", (e) => {
+      if (e.touches.length === 0) {
+        isDragging = false;
+        if (scale < 1) resetZoom();
+      }
+    });
+
+    viewerBody.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
+      scale = Math.min(Math.max(scale * zoomFactor, 0.8), 6);
+      updateTransform();
+    }, { passive: false });
+
+
+    // ==========================================
+    // 👥 LOBBY MANAGER (SYNCHRONISATION PC)
+    // ==========================================
+    let currentLobbyCode = localStorage.getItem("dbd_mobile_lobby_code") || "";
+    let lobbyPollTimer = null;
+    let lastSyncedMapName = "";
+
+    function openLobbyModal() {
+      lobbyModal.style.display = "flex";
+      updateLobbyUI();
+    }
+    function closeLobbyModal() {
+      lobbyModal.style.display = "none";
+    }
+
+    btnHeaderLobby.addEventListener("click", openLobbyModal);
+    btnCloseLobby.addEventListener("click", closeLobbyModal);
+
+    function updateLobbyUI() {
+      if (currentLobbyCode) {
+        lobbyStatusDot.textContent = "🟢";
+        lobbyStatusText.textContent = currentLobbyCode;
+        btnHeaderLobby.classList.add("active");
+        lobbyActiveBox.style.display = "block";
+        lobbyJoinForm.style.display = "none";
+        lobbyCodeDisplay.textContent = currentLobbyCode;
+      } else {
+        lobbyStatusDot.textContent = "⚪";
+        lobbyStatusText.textContent = "Lobby";
+        btnHeaderLobby.classList.remove("active");
+        lobbyActiveBox.style.display = "none";
+        lobbyJoinForm.style.display = "block";
+      }
+    }
+
+    const LOBBY_API_KEY = "731ciu40";
+
+    async function pollLobbyOnce() {
+      if (!currentLobbyCode) return;
+      try {
+        const url = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/${currentLobbyCode}?t=${Date.now()}`;
+        const resp = await fetch(url, { cache: "no-store" });
+        if (!resp.ok) return;
+        let val = await resp.text();
+        if (val) {
+          val = val.trim().replace(/^"|"$/g, "");
+          if (val && val !== "null" && val !== "LOBBY_CREATED" && val.toLowerCase() !== lastSyncedMapName.toLowerCase()) {
+            lastSyncedMapName = val;
+            await onMapReceivedFromLobby(val);
+          }
+        }
+      } catch (e) {}
+    }
+
+    function startLobbyListener(code) {
+      stopLobbyListener();
+      currentLobbyCode = code.toUpperCase();
+      localStorage.setItem("dbd_mobile_lobby_code", currentLobbyCode);
+      updateLobbyUI();
+      showToast("✅ Connecté au Lobby " + currentLobbyCode + " !");
+
+      pollLobbyOnce();
+      lobbyPollTimer = setInterval(pollLobbyOnce, 1200);
+    }
+
+    function stopLobbyListener() {
+      if (lobbyPollTimer) {
+        clearInterval(lobbyPollTimer);
+        lobbyPollTimer = null;
+      }
+      currentLobbyCode = "";
+      localStorage.removeItem("dbd_mobile_lobby_code");
+      updateLobbyUI();
+    }
+
+    async function onMapReceivedFromLobby(mapPayload) {
+      // Cas 1 : Réception d'une carte personnalisée dessinée sur PC (CUSTOM_MAP:Name:Ext)
+      if (mapPayload.startsWith("CUSTOM_MAP:")) {
+        const parts = mapPayload.split(":");
+        const customName = parts.length > 1 ? parts[1] : "Carte Custom";
+        lobbySyncMsg.textContent = "⚡ Réception de la carte custom : " + customName;
+        try {
+          const customUrl = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/${currentLobbyCode}_CUSTOM?t=${Date.now()}`;
+          const res = await fetch(customUrl, { cache: "no-store" });
+          if (res.ok) {
+            let b64 = (await res.text()).trim().replace(/^"|"$/g, "");
+            if (b64) {
+              const customMapObj = {
+                name: customName,
+                creator: "Lobby PC",
+                src: "data:image/png;base64," + b64
+              };
+              openViewer(customMapObj, true);
+              showToast("🎨 Carte custom reçue du Lobby : " + customName);
+              return;
+            }
+          }
+        } catch (e) {}
+        return;
+      }
+
+      // Cas 2 : Carte officielle
+      lobbySyncMsg.textContent = "⚡ Dernière carte reçue : " + mapPayload;
+      const cleanTarget = cleanStr(mapPayload);
+      let match = MAPS.find(m => cleanStr(m.name) === cleanTarget || cleanStr(m.name).includes(cleanTarget) || cleanTarget.includes(cleanStr(m.name)));
+      
+      if (match) {
+        openViewer(match, true);
+        showToast("🎮 Carte reçue du Lobby : " + match.name);
+      } else {
+        showToast("ℹ️ Carte reçue : " + mapPayload);
+      }
+    }
+
+    // Réveil immédiat si retour au premier plan sur iPhone / iOS
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible" && currentLobbyCode) {
+        pollLobbyOnce();
+      }
+    });
+
+    btnJoinLobby.addEventListener("click", () => {
+      const code = inputLobbyCode.value.trim().toUpperCase();
+      if (!code || code.length < 3) {
+        alert("Veuillez entrer un code de lobby valide.");
+        return;
+      }
+      startLobbyListener(code);
+      inputLobbyCode.value = "";
+    });
+
+    btnCreateLobby.addEventListener("click", async () => {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let code = "";
+      for (let i = 0; i < 5; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      try {
+        await fetch(`https://keyvalue.immanuel.co/api/KeyVal/UpdateValue/${LOBBY_API_KEY}/${code}/LOBBY_CREATED`, {
+          method: "POST"
+        });
+      } catch (e) {}
+      startLobbyListener(code);
+    });
+
+    btnLeaveLobby.addEventListener("click", () => {
+      stopLobbyListener();
+      showToast("Vous avez quitté le lobby.");
+    });
+
+    // Si un lobby était déjà actif en mémoire, reprendre l'écoute
+    if (currentLobbyCode) {
+      startLobbyListener(currentLobbyCode);
+    }
+
+
+    // ==========================================
+    // 🔄 SYNCHRONISATION DES CARTES (GITHUB)
+    // ==========================================
+    async function syncMapsFromGitHub() {
+      btnHeaderSync.classList.add("spinning");
+      showToast("🔄 Rafraîchissement des cartes...");
+
+      // 1. Réinitialiser la recherche si le joueur était sur un filtre
+      if (searchInput && searchInput.value) {
+        searchInput.value = "";
+        if (clearBtn) clearBtn.style.display = "none";
+      }
+
+      // 2. Toujours afficher immédiatement les cartes locales
+      if (!MAPS || MAPS.length === 0) {
+        MAPS = [...DEFAULT_MAPS];
+      }
+      renderMaps(MAPS);
+
+      try {
+        const mapsUrls = [
+          "https://exprimes.github.io/dbd-maps/maps.json?t=" + Date.now(),
+          "https://raw.githubusercontent.com/Exprimes/dbd-maps/main/maps.json?t=" + Date.now()
+        ];
+        let remoteMaps = null;
+        for (const u of mapsUrls) {
+          try {
+            const resp = await fetch(u, { cache: "no-store" });
+            if (resp.ok) {
+              remoteMaps = await resp.json();
+              if (Array.isArray(remoteMaps) && remoteMaps.length > 0) break;
+            }
+          } catch (err) {}
+        }
+
+        let addedCount = 0;
+        if (Array.isArray(remoteMaps) && remoteMaps.length > 0) {
+          remoteMaps.forEach(rm => {
+            let fullSrc = rm.src;
+            if (!fullSrc.startsWith("http")) {
+              fullSrc = "https://exprimes.github.io/dbd-maps/" + fullSrc.replace(/^\/+/, "");
+            }
+            const existing = MAPS.find(m => cleanStr(m.name) === cleanStr(rm.name));
+            if (!existing) {
+              MAPS.push({ ...rm, src: fullSrc });
+              addedCount++;
+            } else {
+              existing.src = fullSrc;
+            }
+          });
+          MAPS.sort((a, b) => a.name.localeCompare(b.name, "fr", { sensitivity: "base" }));
+          localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
+        }
+
+        renderMaps(MAPS);
+
+        if (addedCount > 0) {
+          showToast(`🎉 ${addedCount} nouvelle(s) carte(s) ajoutée(s) ! (${MAPS.length} cartes au total)`);
+        } else {
+          showToast(`✅ Vos ${MAPS.length} cartes sont parfaitement synchronisées !`);
+        }
+      } catch (e) {
+        renderMaps(MAPS);
+        showToast(`✅ Vos ${MAPS.length} cartes sont prêtes.`);
+      } finally {
+        setTimeout(() => btnHeaderSync.classList.remove("spinning"), 600);
+      }
+    }
+
+    let lastSyncTap = 0;
+    btnHeaderSync.addEventListener("click", () => {
+      const now = Date.now();
+      if (now - lastSyncTap < 500) {
+        window.location.reload();
+        return;
+      }
+      lastSyncTap = now;
+      syncMapsFromGitHub();
+    });
+
+
+    // ==========================================
+    // 🚀 VÉRIFICATEUR DE MISES À JOUR (MOBILE APK)
+    // ==========================================
+    const CURRENT_MOBILE_VERSION = "1.0.4";
+
+    // Synchronisation automatique et dynamique de tous les indicateurs de version
+    const badgeEl = document.getElementById("currentVersionBadge");
+    if (badgeEl) badgeEl.textContent = "v" + CURRENT_MOBILE_VERSION;
+    const footerVerEl = document.getElementById("footerVersionText");
+    if (footerVerEl) footerVerEl.textContent = "DBD MAP Mobile • v" + CURRENT_MOBILE_VERSION;
+
+    const updateModal = document.getElementById("updateModal");
+    const btnHeaderUpdate = document.getElementById("btnHeaderUpdate");
+    const btnFooterUpdate = document.getElementById("btnFooterUpdate");
+    const btnCloseUpdate = document.getElementById("btnCloseUpdate");
+    const btnCheckUpdateManual = document.getElementById("btnCheckUpdateManual");
+    const updateIcon = document.getElementById("updateIcon");
+    const updateBtnText = document.getElementById("updateBtnText");
+    const updateLastCheckTxt = document.getElementById("updateLastCheckTxt");
+    const updateResultArea = document.getElementById("updateResultArea");
+
+    function openUpdateModal() {
+      updateModal.style.display = "flex";
+      // Si aucune vérification n'a encore été faite, la lancer automatiquement à l'ouverture de la modal
+      if (!updateResultArea.innerHTML) {
+        checkUpdates(false);
+      }
+    }
+
+    function closeUpdateModal() {
+      updateModal.style.display = "none";
+    }
+
+    btnHeaderUpdate.addEventListener("click", openUpdateModal);
+    btnFooterUpdate.addEventListener("click", openUpdateModal);
+    btnCloseUpdate.addEventListener("click", closeUpdateModal);
+
+    async function checkUpdates(silent) {
+      if (!silent) {
+        btnCheckUpdateManual.disabled = true;
+        updateIcon.textContent = "⏳";
+        updateIcon.classList.add("spinning");
+        updateBtnText.textContent = "Vérification en cours...";
+        updateResultArea.style.display = "none";
+      }
+
+      try {
+        const versionUrl = "https://raw.githubusercontent.com/Exprimes/dbd-maps/main/version.json?t=" + Date.now();
+        const resp = await fetch(versionUrl);
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+
+        const vData = await resp.json();
+        const hasNew = vData.version && compareVersions(vData.version, CURRENT_MOBILE_VERSION) > 0;
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        updateLastCheckTxt.textContent = "Dernière vérification : aujourd'hui à " + timeStr;
+
+        if (hasNew) {
+          btnHeaderUpdate.classList.add("has-update");
+          updateResultArea.style.display = "block";
+
+          let alertBanner = "";
+          if (vData.admin_alert && vData.admin_alert.enabled && vData.admin_alert.message) {
+            alertBanner = `
+              <div style="background: rgba(231, 76, 60, 0.22); border: 1px solid #e74c3c; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; text-align: left;">
+                <div style="font-weight: 800; color: #ff7b72; font-size: 0.85rem; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                  <span>🔔</span> MESSAGE DE L'ADMINISTRATEUR :
+                </div>
+                <div style="font-size: 0.82rem; color: #f0f6fc; line-height: 1.4;">
+                  ${vData.admin_alert.message}
+                </div>
+              </div>
+            `;
+          }
+
+          updateResultArea.innerHTML = `
+            <div style="background: rgba(231, 76, 60, 0.12); border: 1px solid #e74c3c; border-radius: 10px; padding: 14px; text-align: left;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-weight:800; color:#ff7b72; font-size:0.95rem;">🚀 Version v${vData.version} disponible !</span>
+                <span class="badge" style="background:#e74c3c; color:#fff; font-size:0.7rem; font-weight:800;">NOUVEAU</span>
+              </div>
+              ${alertBanner}
+              <p style="font-size:0.8rem; color:#c9d1d9; margin-bottom:12px; line-height:1.4;">
+                ${vData.changelog || "Nouvelles fonctionnalités et améliorations disponibles."}
+              </p>
+              <a href="${vData.apk_download_url || 'https://github.com/Exprimes/dbd-maps/releases/download/v1.0.4/DBDMaps.apk'}" target="_blank" class="btn btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:10px; border-radius:8px; width:100%;">
+                📥 Télécharger la mise à jour (APK)
+              </a>
+            </div>
+          `;
+          showToast("🚀 Nouvelle version v" + vData.version + " disponible !");
+          if (silent && vData.admin_alert && vData.admin_alert.enabled) {
+            updateModal.classList.add("active");
+          }
+        } else {
+          btnHeaderUpdate.classList.remove("has-update");
+          updateResultArea.style.display = "block";
+          updateResultArea.innerHTML = `
+            <div style="background: rgba(35, 134, 54, 0.15); border: 1px solid #238636; border-radius: 10px; padding: 14px; text-align: center;">
+              <div style="font-size: 1.6rem; margin-bottom: 4px;">✅</div>
+              <div style="font-weight: 800; color: #3fb950; font-size: 0.95rem; margin-bottom: 4px;">
+                Votre application est parfaitement à jour !
+              </div>
+              <p style="font-size: 0.78rem; color: #8b949e;">
+                Vous profitez déjà de la version officielle la plus récente (v${CURRENT_MOBILE_VERSION}).
+              </p>
+            </div>
+          `;
+          if (!silent) {
+            showToast("✅ Votre application est à jour (v" + CURRENT_MOBILE_VERSION + ")");
+          }
+        }
+      } catch (err) {
+        if (!silent) {
+          updateResultArea.style.display = "block";
+          updateResultArea.innerHTML = `
+            <div style="background: rgba(240, 180, 41, 0.1); border: 1px solid #d29922; border-radius: 10px; padding: 12px; text-align: center;">
+              <div style="font-weight: 700; color: #f1c40f; font-size: 0.85rem; margin-bottom: 4px;">
+                ⚠️ Impossible de vérifier la mise à jour
+              </div>
+              <p style="font-size: 0.75rem; color: #8b949e;">
+                Vérifiez votre connexion Internet et réessayez.
+              </p>
+            </div>
+          `;
+          showToast("⚠️ Échec de la vérification");
+        }
+      } finally {
+        if (!silent) {
+          btnCheckUpdateManual.disabled = false;
+          updateIcon.textContent = "🔍";
+          updateIcon.classList.remove("spinning");
+          updateBtnText.textContent = "Rechercher une mise à jour";
+        }
+      }
+    }
+
+    // ==========================================
+    // 📡 TÉLÉMÉTRIE JOUEURS ACTIFS (MOBILE & IOS)
+    // ==========================================
+    function detectPlatform() {
+      const ua = navigator.userAgent || "";
+      if (/iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) {
+        return "ios";
+      }
+      if (/Android/i.test(ua)) {
+        return "android";
+      }
+      return "web";
+    }
+
+    async function sendMobileTelemetryHeartbeat() {
+      try {
+        const plat = detectPlatform();
+        const prefix = plat === "ios" ? "IOS-" : (plat === "android" ? "AND-" : "WEB-");
+        
+        let mobileId = localStorage.getItem("dbd_mobile_client_id");
+        // Migration de l'ancien ID si nécessaire
+        if (!mobileId || (plat === "ios" && !mobileId.startsWith("IOS-")) || (plat === "android" && !mobileId.startsWith("AND-"))) {
+          mobileId = prefix + Math.floor(1000 + Math.random() * 9000);
+          localStorage.setItem("dbd_mobile_client_id", mobileId);
+        }
+
+        const now = Math.floor(Date.now() / 1000);
+        const getUrl = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/ACTIVE_USERS?t=${Date.now()}`;
+        
+        let existingB64 = "";
+        try {
+          const resp = await fetch(getUrl, { cache: "no-store" });
+          if (resp.ok) {
+            existingB64 = (await resp.text()).trim().replace(/"/g, "");
+          }
+        } catch (e) {}
+
+        let content = "";
+        if (existingB64 && existingB64 !== "EMPTY") {
+          try {
+            let normalized = existingB64.replace(/_/g, "/").replace(/-/g, "+");
+            let mod = normalized.length % 4;
+            if (mod > 0) normalized += "=".repeat(4 - mod);
+            content = decodeURIComponent(escape(atob(normalized)));
+          } catch (e) {}
+        }
+
+        let lines = [];
+        let updated = false;
+        if (content) {
+          for (const part of content.split(";")) {
+            const tokens = part.split(":");
+            if (tokens.length >= 4) {
+              if (tokens[0] === mobileId) {
+                lines.push(`${mobileId}:${CURRENT_MOBILE_VERSION}:${plat}:${now}`);
+                updated = true;
+              } else {
+                const ts = parseInt(tokens[3]);
+                // Garder les enregistrements des 7 derniers jours
+                if (!isNaN(ts) && (now - ts) < 604800) {
+                  lines.push(part);
+                }
+              }
+            }
+          }
+        }
+
+        if (!updated) {
+          lines.push(`${mobileId}:${CURRENT_MOBILE_VERSION}:${plat}:${now}`);
+        }
+
+        if (lines.length > 100) {
+          lines = lines.slice(lines.length - 100);
+        }
+
+        const newContent = lines.join(";");
+        const newB64 = btoa(unescape(encodeURIComponent(newContent))).replace(/\//g, "_").replace(/\+/g, "-");
+        const putUrl = `https://keyvalue.immanuel.co/api/KeyVal/UpdateValue/${LOBBY_API_KEY}/ACTIVE_USERS/${newB64}`;
+        await fetch(putUrl, { method: "POST" });
+      } catch (err) {}
+    }
+
+    async function removeMobileTelemetryHeartbeat() {
+      try {
+        const mobileId = localStorage.getItem("dbd_mobile_client_id");
+        if (!mobileId) return;
+
+        const getUrl = `https://keyvalue.immanuel.co/api/KeyVal/GetValue/${LOBBY_API_KEY}/ACTIVE_USERS`;
+        const resp = await fetch(getUrl);
+        if (!resp.ok) return;
+        const existingB64 = (await resp.text()).trim().replace(/"/g, "");
+        if (!existingB64 || existingB64 === "EMPTY") return;
+
+        let normalized = existingB64.replace(/_/g, "/").replace(/-/g, "+");
+        let mod = normalized.length % 4;
+        if (mod > 0) normalized += "=".repeat(4 - mod);
+        const content = decodeURIComponent(escape(atob(normalized)));
+
+        let lines = [];
+        for (const part of content.split(";")) {
+          const tokens = part.split(":");
+          if (tokens.length >= 4 && tokens[0] !== mobileId) {
+            lines.push(part);
+          }
+        }
+
+        const newContent = lines.length > 0 ? lines.join(";") : "EMPTY";
+        const newB64 = newContent === "EMPTY" ? "EMPTY" : btoa(unescape(encodeURIComponent(newContent))).replace(/\//g, "_").replace(/\+/g, "-");
+        const putUrl = `https://keyvalue.immanuel.co/api/KeyVal/UpdateValue/${LOBBY_API_KEY}/ACTIVE_USERS/${newB64}`;
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(putUrl);
+        } else {
+          fetch(putUrl, { method: "POST", keepalive: true });
+        }
+      } catch (e) {}
+    }
+
+    // Envoyer immédiatement le battement de cœur télémétrique
+    sendMobileTelemetryHeartbeat();
+
+    // Renvoyer le battement dès que l'utilisateur rouvre ou revient sur l'application iOS / Mobile
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        sendMobileTelemetryHeartbeat();
+      }
+    });
+    window.addEventListener("pageshow", () => sendMobileTelemetryHeartbeat());
+    window.addEventListener("focus", () => sendMobileTelemetryHeartbeat());
+
+    // Vérifier discrètement les cartes et les mises à jour au lancement
+    setTimeout(() => {
+      syncMapsFromGitHub();
+      checkUpdates(true);
+    }, 1500);
+
+    // Battement de cœur en direct toutes les 30 secondes
+    setInterval(sendMobileTelemetryHeartbeat, 30000);
+
+    // Détection iOS Safari (hors mode autonome)
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.navigator.standalone) {
+      const iosBanner = document.getElementById("iosInstallBanner");
+      if (iosBanner) iosBanner.style.display = "flex";
+    }
+  </script>
+</body>
+</html>

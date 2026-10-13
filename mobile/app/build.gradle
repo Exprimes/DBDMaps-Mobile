@@ -1,0 +1,38 @@
+plugins {
+    id("com.android.application")
+}
+
+android {
+    namespace = "com.exprimes.dbdmaps"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.exprimes.dbdmaps"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 4
+        versionName = "1.0.4"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // Permet d'installer directement l'APK sans configuration de signature complexe
+            signingConfig = signingConfigs.debug
+        }
+        debug {
+            applicationIdSuffix = ""
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // Aucune dépendance externe lourde requise
+}
