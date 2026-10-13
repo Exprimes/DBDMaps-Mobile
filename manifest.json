@@ -7,11 +7,11 @@
                       "src":  "app_icon.png"
                   }
               ],
-    "description":  "43 Cartes HD officielles \u0026 Lobby synchronisé en direct pour Dead by Daylight",
+    "description":  "44 Cartes HD officielles & Lobby synchronisé en direct pour Dead by Daylight",
     "background_color":  "#0d1117",
     "theme_color":  "#161b22",
     "name":  "DBD MAP",
-    "start_url":  "./app.html?v=1.0.2",
+    "start_url":  "./app.html?v=1.0.4",
     "display":  "standalone",
     "short_name":  "DBD MAP"
 }
