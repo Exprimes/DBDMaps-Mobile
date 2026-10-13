@@ -1,12 +1,12 @@
 {
-    "version": "1.0.3",
-    "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.3/DBDMaps.exe",
-    "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.3/DBDMaps.apk",
-    "changelog": "Nouvelle carte officielle 'La Ferme Thompson' ajoutée (44 cartes HD), bouton de synchronisation en direct sur PC, détection temps réel iOS / Mobile et optimisations de performances.",
-    "admin_alert": {
-        "enabled": true,
-        "min_version": "1.0.3",
-        "date": "13/10/2026",
-        "message": "Mise à jour majeure v1.0.3 disponible : Nouvelle carte La Ferme Thompson et synchronisation instantanée ! Cliquez sur 'Oui' pour l'installer automatiquement."
-    }
+  "version": "1.0.3",
+  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.3/DBDMaps.exe",
+  "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.3/DBDMaps.apk",
+  "changelog": "Nouvelle carte officielle \u0027La Ferme Thompson\u0027 ajout\u00E9e (44 cartes HD), bouton de synchronisation en direct sur PC, d\u00E9tection temps r\u00E9el iOS / Mobile et optimisations de performances.",
+  "admin_alert": {
+    "enabled": true,
+    "min_version": "1.0.3",
+    "message": "Une nouvelle mise \u00E0 jour importante de DBD MAP est disponible ! Veuillez mettre \u00E0 jour le logiciel pour continuer \u00E0 profiter de toutes les cartes et fonctionnalit\u00E9s.",
+    "date": "13/10/2026 22:29"
+  }
 }
