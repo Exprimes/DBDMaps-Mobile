@@ -4,9 +4,9 @@
   "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.apk",
   "changelog": "\uD83D\uDD25 NOUVEAU STYLE OFFICIEL : 44 cartes remasteris\u00E9es en style Ambre / Blood Gold avec fond 100% transparent par-dessus Dead by Daylight, suppression des doublons RPD, et nouveau moteur de synchronisation automatique instantan\u00E9e.",
   "admin_alert": {
-    "enabled": true,
+    "enabled": false,
     "min_version": "1.0.5",
-    "message": "Une nouvelle mise \u00E0 jour importante de DBD MAP est disponible ! Veuillez mettre \u00E0 jour le logiciel pour continuer \u00E0 profiter de toutes les cartes et fonctionnalit\u00E9s.",
-    "date": "14/10/2026 04:16"
+    "message": "",
+    "date": "14/10/2026 09:11"
   }
 }
