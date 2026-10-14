@@ -6,6 +6,16 @@
     },
     {
         "creator": "Exprimes",
+        "name": "Aile Est du Commissariat de Raccoon City",
+        "src": "maps/Exprimes/Aile_Est_du_Commissariat_de_Raccoon_City.png"
+    },
+    {
+        "creator": "Exprimes",
+        "name": "Aile Ouest du Commissariat de Raccoon City",
+        "src": "maps/Exprimes/Aile_Ouest_du_Commissariat_de_Raccoon_City.png"
+    },
+    {
+        "creator": "Exprimes",
         "name": "Aire de Corbeaux",
         "src": "maps/Exprimes/Aire de Corbeaux.png"
     },
@@ -51,13 +61,13 @@
     },
     {
         "creator": "Exprimes",
-        "name": "Entrepôt Grondant",
-        "src": "maps/Exprimes/Entrepôt Grondant.png"
+        "name": "Entrepôt de Charbon",
+        "src": "maps/Exprimes/Entrepôt de Charbon.png"
     },
     {
         "creator": "Exprimes",
-        "name": "Entrepôt de Charbon",
-        "src": "maps/Exprimes/Entrepôt de Charbon.png"
+        "name": "Entrepôt Grondant",
+        "src": "maps/Exprimes/Entrepôt Grondant.png"
     },
     {
         "creator": "Exprimes",
@@ -136,16 +146,6 @@
     },
     {
         "creator": "Exprimes",
-        "name": "RPD East",
-        "src": "maps/Exprimes/RPD East.png"
-    },
-    {
-        "creator": "Exprimes",
-        "name": "RPD West",
-        "src": "maps/Exprimes/RPD West.png"
-    },
-    {
-        "creator": "Exprimes",
         "name": "Refuge Perdu",
         "src": "maps/Exprimes/Refuge Perdu.png"
     },
@@ -207,7 +207,7 @@
     {
         "creator": "Exprimes",
         "name": "École Primaire Midwich",
-        "src": "maps/Exprimes/École Primaire Midwich.png"
+        "src": "maps/Exprimes/ecole_primaire_midwich.gif"
     },
     {
         "creator": "Exprimes",
