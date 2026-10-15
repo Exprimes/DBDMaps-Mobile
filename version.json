@@ -1,12 +1,12 @@
 {
-  "version": "1.0.5.1",
-  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.exe",
+  "version": "1.2.5",
+  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.2.5/DBDMaps.exe",
   "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.apk",
-  "changelog": "⚡ Hotfix v1.0.5 : Fermeture 100% instantanée de la carte overlay et détection OCR renforcée (Toba et toutes les cartes).",
+  "changelog": "🎯 Hotfix v1.2.5 : OCR sur les 44 cartes par nom complet + Détection automatique multi-écrans (jeu sur écran 2 ou 3).",
   "admin_alert": {
     "enabled": true,
-    "min_version": "1.0.5.1",
-    "message": "⚡ Hotfix v1.0.5 disponible :\n• Fermeture 100% instantanée de la carte overlay\n• Détection automatique OCR renforcée (Toba et cartes spéciales)\n\nCliquez sur OUI pour appliquer le hotfix automatiquement en 3 secondes.",
-    "date": "14/10/2026 23:05"
+    "min_version": "1.2.5",
+    "message": "🎯 Hotfix v1.2.5 disponible :\n• Détection OCR 100% fiable sur les 44 cartes (nom complet)\n• Support multi-écrans automatique (jeu sur écran 2 ou 3)\n\nCliquez sur OUI pour mettre à jour instantanément.",
+    "date": "15/10/2026 03:00"
   }
 }
