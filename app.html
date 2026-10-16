@@ -632,7 +632,7 @@
   </main>
 
   <footer>
-    <span id="footerVersionText">DBD MAP • Omni Community • v1.2.5</span>
+    <span id="footerVersionText">DBD MAP • Omni Community • v1.2.6</span>
     <button class="footer-update-btn" id="btnFooterUpdate">
       <span>🚀</span>
       <span>Vérifier les mises à jour</span>
@@ -654,7 +654,7 @@
         <div style="background:#161b22; border:1px solid #30363d; border-radius:10px; padding:12px; margin-bottom:14px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <span style="font-size:0.8rem; color:#8b949e; font-weight:600;">Version actuelle installée :</span>
-            <span class="badge" id="currentVersionBadge" style="background:#238636; color:#fff; font-size:0.8rem; font-weight:800; padding:2px 8px; border-radius:10px;">v1.2.5</span>
+            <span class="badge" id="currentVersionBadge" style="background:#238636; color:#fff; font-size:0.8rem; font-weight:800; padding:2px 8px; border-radius:10px;">v1.2.6</span>
           </div>
           <div style="margin-top:8px; font-size:0.75rem; color:#8b949e;" id="updateLastCheckTxt">
             Dernière vérification : non effectuée
@@ -783,8 +783,21 @@
       { name: "Vallon des Tourments", creator: "Exprimes", src: "maps/Exprimes/Vallon des Tourments.png" }
     ];
 
+    function cleanStr(s) {
+      return (s || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    function isObsoleteMap(name) {
+      const c = cleanStr(name);
+      return c.includes("rpdeast") || c.includes("rpdwest") || c.includes("rpdest") || c.includes("rpdouest") || c === "rpd";
+    }
+
     // Charger les cartes sauvegardées / synchronisées dynamiquement
-    let MAPS = [...DEFAULT_MAPS];
+    let MAPS = DEFAULT_MAPS.filter(m => !isObsoleteMap(m.name));
 
     // Migration automatique pour nettoyer les anciens liens 404 (Exprimes/DBDMaps)
     MAPS.forEach(m => {
@@ -797,13 +810,15 @@
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Fusionner sans doublons
+          // Fusionner sans doublons ni cartes obsolètes
           parsed.forEach(p => {
-            if (!MAPS.some(m => cleanStr(m.name) === cleanStr(p.name))) {
+            if (!isObsoleteMap(p.name) && !MAPS.some(m => cleanStr(m.name) === cleanStr(p.name))) {
               MAPS.push(p);
             }
           });
         }
+        // Purger immédiatement localStorage pour que RPD East/West ne revienne plus jamais
+        localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
       }
     } catch (e) {}
 
@@ -841,14 +856,6 @@
       toastMsg.textContent = text;
       toastMsg.classList.add("show");
       setTimeout(() => toastMsg.classList.remove("show"), 3500);
-    }
-
-    function cleanStr(s) {
-      return (s || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z0-9]/g, "");
     }
 
     function compareVersions(v1, v2) {
@@ -1132,7 +1139,12 @@
 
       // Cas 2 : Carte officielle
       lobbySyncMsg.textContent = "⚡ Dernière carte reçue : " + mapPayload;
-      const cleanTarget = cleanStr(mapPayload);
+      let cleanTarget = cleanStr(mapPayload);
+      if (cleanTarget.includes("rpdeast") || cleanTarget.includes("rpdest")) {
+        cleanTarget = cleanStr("Aile Est du Commissariat de Raccoon City");
+      } else if (cleanTarget.includes("rpdwest") || cleanTarget.includes("rpdouest")) {
+        cleanTarget = cleanStr("Aile Ouest du Commissariat de Raccoon City");
+      }
       let match = MAPS.find(m => cleanStr(m.name) === cleanTarget || cleanStr(m.name).includes(cleanTarget) || cleanTarget.includes(cleanStr(m.name)));
       
       if (match) {
@@ -1223,6 +1235,7 @@
         let addedCount = 0;
         if (Array.isArray(remoteMaps) && remoteMaps.length > 0) {
           remoteMaps.forEach(rm => {
+            if (isObsoleteMap(rm.name)) return;
             let fullSrc = rm.src;
             if (!fullSrc.startsWith("http")) {
               fullSrc = "https://exprimes.github.io/dbd-maps/" + fullSrc.replace(/^\/+/, "");
@@ -1235,6 +1248,7 @@
               existing.src = fullSrc;
             }
           });
+          MAPS = MAPS.filter(m => !isObsoleteMap(m.name));
           MAPS.sort((a, b) => a.name.localeCompare(b.name, "fr", { sensitivity: "base" }));
           localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
         }
@@ -1272,7 +1286,7 @@
     // ==========================================
     // 🚀 VÉRIFICATEUR DE MISES À JOUR (MOBILE APK)
     // ==========================================
-    const CURRENT_MOBILE_VERSION = "1.2.5";
+    const CURRENT_MOBILE_VERSION = "1.2.6";
 
     // Synchronisation automatique et dynamique de tous les indicateurs de version
     const badgeEl = document.getElementById("currentVersionBadge");

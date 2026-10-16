@@ -1,13 +1,13 @@
 {
-  "version": "1.2.5",
-  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.2.5/DBDMaps.exe",
+  "version": "1.2.6",
+  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.2.6/DBDMaps.exe",
   "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.apk",
-  "changelog": "🎯 Hotfix v1.2.5 : OCR sur les 44 cartes par nom complet + Détection automatique multi-écrans (jeu sur écran 2 ou 3).",
+  "changelog": "⚡ Hotfix v1.2.6 : Détection OCR instantanée exclusive Ligne 1 (résout le délai Nostromo), nouvelles cartes HD Léry & Hawkins, suppression des doublons RPD sur mobile.",
   "discord_url": "https://discord.gg/sHVttN4ZdZ",
   "admin_alert": {
     "enabled": true,
-    "min_version": "1.2.5",
-    "message": "🎯 Hotfix v1.2.5 disponible :\n• Détection OCR 100% fiable sur les 44 cartes (nom complet)\n• Support multi-écrans automatique (jeu sur écran 2 ou 3)\n\nCliquez sur OUI pour mettre à jour instantanément.",
-    "date": "15/10/2026 03:00"
+    "min_version": "1.2.6",
+    "message": "⚡ Hotfix v1.2.6 disponible :\n• Détection OCR instantanée exclusive Ligne 1 (zéro délai sur Nostromo et autres cartes)\n• Nouvelles cartes officielles HD : Centre de Traitement Léry & Complexe Souterrain Hawkins\n• Nettoyage des doublons RPD sur mobile\n\nCliquez sur OUI pour mettre à jour instantanément.",
+    "date": "17/10/2026 02:00"
   }
 }

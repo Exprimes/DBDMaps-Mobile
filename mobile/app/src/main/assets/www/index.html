@@ -11,7 +11,17 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>DBD MAP Mobile</title>
+  <title>DBD MAP • 44 Cartes HD Mobile & Console</title>
+  <meta name="description" content="DBD MAP Web App • Explorez en direct les 44 cartes HD officielles de Dead by Daylight avec lobby synchronisé en temps réel et callouts d'horloge 1 à 12.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://exprimes.github.io/dbd-maps/app.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Omni Community • DBD MAP">
+  <meta property="og:title" content="DBD MAP Web App • 44 Cartes HD en direct">
+  <meta property="og:description" content="Application web compagnon pour Dead by Daylight avec 44 cartes HD et Lobby synchronisé.">
+  <meta property="og:url" content="https://exprimes.github.io/dbd-maps/app.html">
+  <meta property="og:image" content="https://exprimes.github.io/dbd-maps/omni_logo.jpg">
+
   <style>
     * {
       box-sizing: border-box;
@@ -588,10 +598,12 @@
         <img src="app_icon.png" alt="Logo">
         <div class="title-group">
           <h1>DBD MAP</h1>
-          <span>By Exprimes • Console & Mobile</span>
+          <span>By Exprimes • Omni Community</span>
         </div>
       </div>
       <div class="header-actions">
+        <a href="https://discord.gg/sHVttN4ZdZ" target="_blank" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(88,101,242,0.22); border:1px solid #5865F2; color:#fff; border-radius:8px; padding:6px 10px; font-size:0.75rem; font-weight:700;" title="Discord Omni Community">💬 Discord</a>
+        
         <button class="btn-header-lobby" id="btnHeaderLobby">
           <span id="lobbyStatusDot">⚪</span>
           <span id="lobbyStatusText">Lobby</span>
@@ -611,7 +623,7 @@
   <main>
     <div class="section-header">
       <span class="section-title">Cartes Disponibles</span>
-      <span class="badge" id="mapCountBadge">43 Cartes</span>
+      <span class="badge" id="mapCountBadge">44 Cartes</span>
     </div>
     <div class="maps-grid" id="mapsGrid"></div>
     <div class="no-results" id="noResults">
@@ -620,7 +632,7 @@
   </main>
 
   <footer>
-    <span id="footerVersionText">DBD MAP Mobile • v1.0.4</span>
+    <span id="footerVersionText">DBD MAP • Omni Community • v1.2.6</span>
     <button class="footer-update-btn" id="btnFooterUpdate">
       <span>🚀</span>
       <span>Vérifier les mises à jour</span>
@@ -642,7 +654,7 @@
         <div style="background:#161b22; border:1px solid #30363d; border-radius:10px; padding:12px; margin-bottom:14px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <span style="font-size:0.8rem; color:#8b949e; font-weight:600;">Version actuelle installée :</span>
-            <span class="badge" id="currentVersionBadge" style="background:#238636; color:#fff; font-size:0.8rem; font-weight:800; padding:2px 8px; border-radius:10px;">v1.0.4</span>
+            <span class="badge" id="currentVersionBadge" style="background:#238636; color:#fff; font-size:0.8rem; font-weight:800; padding:2px 8px; border-radius:10px;">v1.2.6</span>
           </div>
           <div style="margin-top:8px; font-size:0.75rem; color:#8b949e;" id="updateLastCheckTxt">
             Dernière vérification : non effectuée
@@ -758,8 +770,8 @@
       { name: "Puits d'Asphyxie", creator: "Exprimes", src: "maps/Exprimes/Puits d'Asphyxie.png" },
       { name: "Refuge Perdu", creator: "Exprimes", src: "maps/Exprimes/Refuge Perdu.png" },
       { name: "Résidence Familiale", creator: "Exprimes", src: "maps/Exprimes/Résidence Familiale.png" },
-      { name: "RPD East", creator: "Exprimes", src: "maps/Exprimes/RPD East.png" },
-      { name: "RPD West", creator: "Exprimes", src: "maps/Exprimes/RPD West.png" },
+      { name: "Aile Est du Commissariat de Raccoon City", creator: "Exprimes", src: "maps/Exprimes/Aile_Est_du_Commissariat_de_Raccoon_City.png" },
+      { name: "Aile Ouest du Commissariat de Raccoon City", creator: "Exprimes", src: "maps/Exprimes/Aile_Ouest_du_Commissariat_de_Raccoon_City.png" },
       { name: "Ruines Oubliées", creator: "Exprimes", src: "maps/Exprimes/Ruines Oubliées.png" },
       { name: "Sables Morts", creator: "Exprimes", src: "maps/Exprimes/Sables Morts.png" },
       { name: "Salle des Aliénés", creator: "Exprimes", src: "maps/Exprimes/Salle des Aliénés.png" },
@@ -771,8 +783,21 @@
       { name: "Vallon des Tourments", creator: "Exprimes", src: "maps/Exprimes/Vallon des Tourments.png" }
     ];
 
+    function cleanStr(s) {
+      return (s || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    function isObsoleteMap(name) {
+      const c = cleanStr(name);
+      return c.includes("rpdeast") || c.includes("rpdwest") || c.includes("rpdest") || c.includes("rpdouest") || c === "rpd";
+    }
+
     // Charger les cartes sauvegardées / synchronisées dynamiquement
-    let MAPS = [...DEFAULT_MAPS];
+    let MAPS = DEFAULT_MAPS.filter(m => !isObsoleteMap(m.name));
 
     // Migration automatique pour nettoyer les anciens liens 404 (Exprimes/DBDMaps)
     MAPS.forEach(m => {
@@ -785,13 +810,15 @@
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Fusionner sans doublons
+          // Fusionner sans doublons ni cartes obsolètes
           parsed.forEach(p => {
-            if (!MAPS.some(m => cleanStr(m.name) === cleanStr(p.name))) {
+            if (!isObsoleteMap(p.name) && !MAPS.some(m => cleanStr(m.name) === cleanStr(p.name))) {
               MAPS.push(p);
             }
           });
         }
+        // Purger immédiatement localStorage pour que RPD East/West ne revienne plus jamais
+        localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
       }
     } catch (e) {}
 
@@ -829,14 +856,6 @@
       toastMsg.textContent = text;
       toastMsg.classList.add("show");
       setTimeout(() => toastMsg.classList.remove("show"), 3500);
-    }
-
-    function cleanStr(s) {
-      return (s || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z0-9]/g, "");
     }
 
     function compareVersions(v1, v2) {
@@ -1120,7 +1139,12 @@
 
       // Cas 2 : Carte officielle
       lobbySyncMsg.textContent = "⚡ Dernière carte reçue : " + mapPayload;
-      const cleanTarget = cleanStr(mapPayload);
+      let cleanTarget = cleanStr(mapPayload);
+      if (cleanTarget.includes("rpdeast") || cleanTarget.includes("rpdest")) {
+        cleanTarget = cleanStr("Aile Est du Commissariat de Raccoon City");
+      } else if (cleanTarget.includes("rpdwest") || cleanTarget.includes("rpdouest")) {
+        cleanTarget = cleanStr("Aile Ouest du Commissariat de Raccoon City");
+      }
       let match = MAPS.find(m => cleanStr(m.name) === cleanTarget || cleanStr(m.name).includes(cleanTarget) || cleanTarget.includes(cleanStr(m.name)));
       
       if (match) {
@@ -1211,6 +1235,7 @@
         let addedCount = 0;
         if (Array.isArray(remoteMaps) && remoteMaps.length > 0) {
           remoteMaps.forEach(rm => {
+            if (isObsoleteMap(rm.name)) return;
             let fullSrc = rm.src;
             if (!fullSrc.startsWith("http")) {
               fullSrc = "https://exprimes.github.io/dbd-maps/" + fullSrc.replace(/^\/+/, "");
@@ -1223,6 +1248,7 @@
               existing.src = fullSrc;
             }
           });
+          MAPS = MAPS.filter(m => !isObsoleteMap(m.name));
           MAPS.sort((a, b) => a.name.localeCompare(b.name, "fr", { sensitivity: "base" }));
           localStorage.setItem("dbd_custom_maps", JSON.stringify(MAPS));
         }
@@ -1242,22 +1268,25 @@
       }
     }
 
-    let lastSyncTap = 0;
     btnHeaderSync.addEventListener("click", () => {
-      const now = Date.now();
-      if (now - lastSyncTap < 500) {
-        window.location.reload();
-        return;
-      }
-      lastSyncTap = now;
-      syncMapsFromGitHub();
+      btnHeaderSync.classList.add("spinning");
+      showToast("🔄 Actualisation de l'application...");
+      
+      try {
+        localStorage.removeItem("dbd_custom_maps");
+      } catch (e) {}
+
+      setTimeout(() => {
+        const cleanUrl = window.location.pathname.split('?')[0];
+        window.location.href = cleanUrl + '?t=' + Date.now();
+      }, 400);
     });
 
 
     // ==========================================
     // 🚀 VÉRIFICATEUR DE MISES À JOUR (MOBILE APK)
     // ==========================================
-    const CURRENT_MOBILE_VERSION = "1.0.4";
+    const CURRENT_MOBILE_VERSION = "1.2.6";
 
     // Synchronisation automatique et dynamique de tous les indicateurs de version
     const badgeEl = document.getElementById("currentVersionBadge");
@@ -1290,6 +1319,9 @@
     btnHeaderUpdate.addEventListener("click", openUpdateModal);
     btnFooterUpdate.addEventListener("click", openUpdateModal);
     btnCloseUpdate.addEventListener("click", closeUpdateModal);
+    if (btnCheckUpdateManual) {
+      btnCheckUpdateManual.addEventListener("click", () => checkUpdates(false));
+    }
 
     async function checkUpdates(silent) {
       if (!silent) {
@@ -1340,9 +1372,15 @@
               <p style="font-size:0.8rem; color:#c9d1d9; margin-bottom:12px; line-height:1.4;">
                 ${vData.changelog || "Nouvelles fonctionnalités et améliorations disponibles."}
               </p>
-              <a href="${vData.apk_download_url || 'https://github.com/Exprimes/dbd-maps/releases/download/v1.0.4/DBDMaps.apk'}" target="_blank" class="btn btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:10px; border-radius:8px; width:100%;">
-                📥 Télécharger la mise à jour (APK)
-              </a>
+              ${detectPlatform() === 'iOS' || !window.Android ? `
+                <button onclick="window.location.reload(true);" class="btn btn-primary" style="display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:12px; border-radius:8px; width:100%; cursor:pointer; background:#238636; border:none; color:#fff;">
+                  🔄 Actualiser pour appliquer la mise à jour
+                </button>
+              ` : `
+                <a href="${vData.apk_download_url || 'https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.apk'}" target="_blank" class="btn btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:10px; border-radius:8px; width:100%;">
+                  📥 Télécharger la mise à jour (APK)
+                </a>
+              `}
             </div>
           `;
           showToast("🚀 Nouvelle version v" + vData.version + " disponible !");
