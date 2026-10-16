@@ -1254,22 +1254,25 @@
       }
     }
 
-    let lastSyncTap = 0;
     btnHeaderSync.addEventListener("click", () => {
-      const now = Date.now();
-      if (now - lastSyncTap < 500) {
-        window.location.reload();
-        return;
-      }
-      lastSyncTap = now;
-      syncMapsFromGitHub();
+      btnHeaderSync.classList.add("spinning");
+      showToast("🔄 Actualisation de l'application...");
+      
+      try {
+        localStorage.removeItem("dbd_custom_maps");
+      } catch (e) {}
+
+      setTimeout(() => {
+        const cleanUrl = window.location.pathname.split('?')[0];
+        window.location.href = cleanUrl + '?t=' + Date.now();
+      }, 400);
     });
 
 
     // ==========================================
     // 🚀 VÉRIFICATEUR DE MISES À JOUR (MOBILE APK)
     // ==========================================
-    const CURRENT_MOBILE_VERSION = "1.0.5";
+    const CURRENT_MOBILE_VERSION = "1.2.5";
 
     // Synchronisation automatique et dynamique de tous les indicateurs de version
     const badgeEl = document.getElementById("currentVersionBadge");
@@ -1302,6 +1305,9 @@
     btnHeaderUpdate.addEventListener("click", openUpdateModal);
     btnFooterUpdate.addEventListener("click", openUpdateModal);
     btnCloseUpdate.addEventListener("click", closeUpdateModal);
+    if (btnCheckUpdateManual) {
+      btnCheckUpdateManual.addEventListener("click", () => checkUpdates(false));
+    }
 
     async function checkUpdates(silent) {
       if (!silent) {
@@ -1352,9 +1358,15 @@
               <p style="font-size:0.8rem; color:#c9d1d9; margin-bottom:12px; line-height:1.4;">
                 ${vData.changelog || "Nouvelles fonctionnalités et améliorations disponibles."}
               </p>
-              <a href="${vData.apk_download_url || 'https://github.com/Exprimes/dbd-maps/releases/download/v1.0.4/DBDMaps.apk'}" target="_blank" class="btn btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:10px; border-radius:8px; width:100%;">
-                📥 Télécharger la mise à jour (APK)
-              </a>
+              ${detectPlatform() === 'iOS' || !window.Android ? `
+                <button onclick="window.location.reload(true);" class="btn btn-primary" style="display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:12px; border-radius:8px; width:100%; cursor:pointer; background:#238636; border:none; color:#fff;">
+                  🔄 Actualiser pour appliquer la mise à jour
+                </button>
+              ` : `
+                <a href="${vData.apk_download_url || 'https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.apk'}" target="_blank" class="btn btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; padding:10px; border-radius:8px; width:100%;">
+                  📥 Télécharger la mise à jour (APK)
+                </a>
+              `}
             </div>
           `;
           showToast("🚀 Nouvelle version v" + vData.version + " disponible !");
