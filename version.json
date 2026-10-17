@@ -1,13 +1,13 @@
 {
-  "version": "1.2.6",
-  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.2.6/DBDMaps.exe",
+  "version": "1.3.5",
+  "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.3.5/DBDMaps.exe",
   "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.apk",
-  "changelog": "⚡ Hotfix v1.2.6 : Détection OCR instantanée exclusive Ligne 1 (résout le délai Nostromo), nouvelles cartes HD Léry & Hawkins, suppression des doublons RPD sur mobile.",
+  "changelog": "⚡ Hotfix v1.3.5 : Détection OCR instantanée exclusive Ligne 1 (uniquement lorsque DBD est au premier plan), nouveaux schémas HD & noms officiels en jeu (« Centre de Traitement » & « Le Complexe Souterrain »), et nettoyage des doublons RPD.",
   "discord_url": "https://discord.gg/sHVttN4ZdZ",
   "admin_alert": {
     "enabled": true,
-    "min_version": "1.2.6",
-    "message": "⚡ Hotfix v1.2.6 disponible :\n• Détection OCR instantanée exclusive Ligne 1 (zéro délai sur Nostromo et autres cartes)\n• Nouvelles cartes officielles HD : Centre de Traitement Léry & Complexe Souterrain Hawkins\n• Nettoyage des doublons RPD sur mobile\n\nCliquez sur OUI pour mettre à jour instantanément.",
-    "date": "17/10/2026 02:00"
+    "min_version": "1.3.5",
+    "message": "⚡ Hotfix v1.3.5 disponible :\n• Détection OCR exclusive Ligne 1 & verrouillage sur fenêtre DBD active (zéro faux positif hors partie, zéro délai sur Nostromo)\n• Nouvelles cartes HD et noms officiels exacts : Centre de Traitement & Le Complexe Souterrain\n• Nettoyage automatique des doublons RPD (PC & Mobile)\n\nCliquez sur OUI pour mettre à jour instantanément.",
+    "date": "17/10/2026 02:50"
   }
 }
