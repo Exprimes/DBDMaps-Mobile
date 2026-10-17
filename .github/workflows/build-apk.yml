@@ -47,10 +47,10 @@ jobs:
           name: DBDMaps-Android-APK
           path: output/DBDMaps.apk
 
-      - name: Upload to Release v1.0.4
+      - name: Upload to Release v1.3.5
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "v1.0.4"
+          tag_name: "v1.3.5"
           files: output/DBDMaps.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

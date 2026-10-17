@@ -1,7 +1,7 @@
 {
   "version": "1.3.5",
   "pc_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.3.5/DBDMaps.exe",
-  "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.0.5/DBDMaps.apk",
+  "apk_download_url": "https://github.com/Exprimes/dbd-maps/releases/download/v1.3.5/DBDMaps.apk",
   "changelog": "⚡ Hotfix v1.3.5 : Détection OCR instantanée exclusive Ligne 1 (uniquement lorsque DBD est au premier plan), nouveaux schémas HD & noms officiels en jeu (« Centre de Traitement » & « Le Complexe Souterrain »), et nettoyage des doublons RPD.",
   "discord_url": "https://discord.gg/sHVttN4ZdZ",
   "admin_alert": {

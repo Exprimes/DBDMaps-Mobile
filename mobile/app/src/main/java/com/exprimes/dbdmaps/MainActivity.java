@@ -77,7 +77,22 @@ public class MainActivity extends Activity {
         webView.setBackgroundColor(0xFF0D1117);
 
         // Charger l'application officielle en ligne (toujours 100% à jour sans re-télécharger d'APK)
-        webView.loadUrl("https://exprimes.github.io/dbd-maps/app.html");
+        webView.loadUrl("https://exprimes.github.io/dbd-maps/app.html?v=1.3.5&t=" + System.currentTimeMillis());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (webView != null) {
+            webView.onResume();
+            webView.evaluateJavascript(
+                "(function() { " +
+                "  if (typeof pollLobbyOnce === 'function') pollLobbyOnce(); " +
+                "  if (typeof sendMobileTelemetryHeartbeat === 'function') sendMobileTelemetryHeartbeat(); " +
+                "})()",
+                null
+            );
+        }
     }
 
     @Override
