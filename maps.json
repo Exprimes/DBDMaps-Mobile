@@ -1,310 +1,310 @@
 [
     {
-        "creator": "Exprimes",
-        "name": "Abattoir Putride",
-        "src": "maps/Exprimes/Abattoir Putride.png",
-        "size": 237949,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Abattoir Putride",
+        "src":  "maps/Exprimes/Abattoir Putride.png",
+        "size":  237949,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Aile Est du Commissariat de Raccoon City",
-        "src": "maps/Exprimes/Aile_Est_du_Commissariat_de_Raccoon_City.png",
-        "size": 410662,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Aile Est du Commissariat de Raccoon City",
+        "src":  "maps/Exprimes/Aile_Est_du_Commissariat_de_Raccoon_City.png",
+        "size":  410662,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Aile Ouest du Commissariat de Raccoon City",
-        "src": "maps/Exprimes/Aile_Ouest_du_Commissariat_de_Raccoon_City.png",
-        "size": 432413,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Aile Ouest du Commissariat de Raccoon City",
+        "src":  "maps/Exprimes/Aile_Ouest_du_Commissariat_de_Raccoon_City.png",
+        "size":  432413,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Aire de Corbeaux",
-        "src": "maps/Exprimes/Aire de Corbeaux.png",
-        "size": 249284,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Aire de Corbeaux",
+        "src":  "maps/Exprimes/Aire de Corbeaux.png",
+        "size":  249284,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Atelier Misérable",
-        "src": "maps/Exprimes/Atelier Misérable.png",
-        "size": 256183,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Atelier Misérable",
+        "src":  "maps/Exprimes/Atelier Misérable.png",
+        "size":  256183,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Cabane du Sang",
-        "src": "maps/Exprimes/Cabane du Sang.png",
-        "size": 236694,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Cabane du Sang",
+        "src":  "maps/Exprimes/Cabane du Sang.png",
+        "size":  236694,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Cellier Sinistre",
-        "src": "maps/Exprimes/Cellier Sinistre.png",
-        "size": 257882,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Cellier Sinistre",
+        "src":  "maps/Exprimes/Cellier Sinistre.png",
+        "size":  257882,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Centre de Traitement Léry",
-        "src": "maps/Exprimes/Centre de Traitement Léry.png",
-        "size": 427519,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Centre de Traitement Léry",
+        "src":  "maps/Exprimes/Centre de Traitement Léry.png",
+        "size":  542383,
+        "v":  3
     },
     {
-        "creator": "Exprimes",
-        "name": "Champs Pourris",
-        "src": "maps/Exprimes/Champs Pourris.png",
-        "size": 269051,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Champs Pourris",
+        "src":  "maps/Exprimes/Champs Pourris.png",
+        "size":  269051,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Chapelle du Père Campbell",
-        "src": "maps/Exprimes/Chapelle du Père Campbell.png",
-        "size": 237979,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Chapelle du Père Campbell",
+        "src":  "maps/Exprimes/Chapelle du Père Campbell.png",
+        "size":  237979,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Complexe Souterrain Hawkins",
-        "src": "maps/Exprimes/Complexe Souterrain Hawkins.png",
-        "size": 394478,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Complexe Souterrain Hawkins",
+        "src":  "maps/Exprimes/Complexe Souterrain Hawkins.png",
+        "size":  474821,
+        "v":  3
     },
     {
-        "creator": "Exprimes",
-        "name": "Dernière Demeure d'Azarov",
-        "src": "maps/Exprimes/Dernière Demeure d'Azarov.png",
-        "size": 325326,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Dernière Demeure d\u0027Azarov",
+        "src":  "maps/Exprimes/Dernière Demeure d\u0027Azarov.png",
+        "size":  325326,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Entrepôt de Charbon",
-        "src": "maps/Exprimes/Entrepôt de Charbon.png",
-        "size": 265653,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Entrepôt de Charbon",
+        "src":  "maps/Exprimes/Entrepôt de Charbon.png",
+        "size":  265653,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Entrepôt Grondant",
-        "src": "maps/Exprimes/Entrepôt Grondant.png",
-        "size": 264867,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Entrepôt Grondant",
+        "src":  "maps/Exprimes/Entrepôt Grondant.png",
+        "size":  264867,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Fonderie de Souffrance",
-        "src": "maps/Exprimes/Fonderie de Souffrance.png",
-        "size": 818377,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Fonderie de Souffrance",
+        "src":  "maps/Exprimes/Fonderie de Souffrance.png",
+        "size":  818377,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Forêt Profonde",
-        "src": "maps/Exprimes/Forêt Profonde.png",
-        "size": 784043,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Forêt Profonde",
+        "src":  "maps/Exprimes/Forêt Profonde.png",
+        "size":  784043,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Freddy Fazbear's Pizza",
-        "src": "maps/Exprimes/Freddy Fazbear's Pizza.png",
-        "size": 337265,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Freddy Fazbear\u0027s Pizza",
+        "src":  "maps/Exprimes/Freddy Fazbear\u0027s Pizza.png",
+        "size":  337265,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Gas Haven",
-        "src": "maps/Exprimes/Gas Haven.png",
-        "size": 462835,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Gas Haven",
+        "src":  "maps/Exprimes/Gas Haven.png",
+        "size":  462835,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Illusion du Farceur",
-        "src": "maps/Exprimes/Illusion du Farceur.png",
-        "size": 274648,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Illusion du Farceur",
+        "src":  "maps/Exprimes/Illusion du Farceur.png",
+        "size":  274648,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Jardin de la Joie",
-        "src": "maps/Exprimes/Jardin de la Joie.png",
-        "size": 259835,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Jardin de la Joie",
+        "src":  "maps/Exprimes/Jardin de la Joie.png",
+        "size":  259835,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "La Ferme Thompson",
-        "src": "maps/Exprimes/La Ferme Thompson.png",
-        "size": 260238,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "La Ferme Thompson",
+        "src":  "maps/Exprimes/La Ferme Thompson.png",
+        "size":  260238,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "La Maison Maternelle",
-        "src": "maps/Exprimes/La Maison Maternelle.png",
-        "size": 283290,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "La Maison Maternelle",
+        "src":  "maps/Exprimes/La Maison Maternelle.png",
+        "size":  283290,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "La Place Dévastée",
-        "src": "maps/Exprimes/La Place Dévastée.png",
-        "size": 254693,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "La Place Dévastée",
+        "src":  "maps/Exprimes/La Place Dévastée.png",
+        "size":  254693,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Le Jeu",
-        "src": "maps/Exprimes/Le Jeu.png",
-        "size": 192688,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Le Jeu",
+        "src":  "maps/Exprimes/Le Jeu.png",
+        "size":  192688,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Le Pâle Rose",
-        "src": "maps/Exprimes/Le Pâle Rose.png",
-        "size": 319845,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Le Pâle Rose",
+        "src":  "maps/Exprimes/Le Pâle Rose.png",
+        "size":  319845,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Le Temple de Purgation",
-        "src": "maps/Exprimes/Le Temple de Purgation.png",
-        "size": 256642,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Le Temple de Purgation",
+        "src":  "maps/Exprimes/Le Temple de Purgation.png",
+        "size":  256642,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Mine du Lac d'Ormond",
-        "src": "maps/Exprimes/Mine du Lac d'Ormond.png",
-        "size": 238212,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Mine du Lac d\u0027Ormond",
+        "src":  "maps/Exprimes/Mine du Lac d\u0027Ormond.png",
+        "size":  238212,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Place de Greenville",
-        "src": "maps/Exprimes/Place de Greenville.png",
-        "size": 243677,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Place de Greenville",
+        "src":  "maps/Exprimes/Place de Greenville.png",
+        "size":  243677,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Puits d'Asphyxie",
-        "src": "maps/Exprimes/Puits d'Asphyxie.png",
-        "size": 787420,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Puits d\u0027Asphyxie",
+        "src":  "maps/Exprimes/Puits d\u0027Asphyxie.png",
+        "size":  787420,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Refuge Perdu",
-        "src": "maps/Exprimes/Refuge Perdu.png",
-        "size": 185483,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Refuge Perdu",
+        "src":  "maps/Exprimes/Refuge Perdu.png",
+        "size":  185483,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Ruines Oubliées",
-        "src": "maps/Exprimes/Ruines Oubliées.png",
-        "size": 1349909,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Ruines Oubliées",
+        "src":  "maps/Exprimes/Ruines Oubliées.png",
+        "size":  1349909,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Résidence Familiale",
-        "src": "maps/Exprimes/Résidence Familiale.png",
-        "size": 302269,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Résidence Familiale",
+        "src":  "maps/Exprimes/Résidence Familiale.png",
+        "size":  302269,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Sables Morts",
-        "src": "maps/Exprimes/Sables Morts.png",
-        "size": 212753,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Sables Morts",
+        "src":  "maps/Exprimes/Sables Morts.png",
+        "size":  212753,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Salle des Aliénés",
-        "src": "maps/Exprimes/Salle des Aliénés.png",
-        "size": 375181,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Salle des Aliénés",
+        "src":  "maps/Exprimes/Salle des Aliénés.png",
+        "size":  375181,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Saloon de Dead Dawg",
-        "src": "maps/Exprimes/Saloon de Dead Dawg.png",
-        "size": 294575,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Saloon de Dead Dawg",
+        "src":  "maps/Exprimes/Saloon de Dead Dawg.png",
+        "size":  294575,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Sanctuaire du Courroux",
-        "src": "maps/Exprimes/Sanctuaire du Courroux.png",
-        "size": 322872,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Sanctuaire du Courroux",
+        "src":  "maps/Exprimes/Sanctuaire du Courroux.png",
+        "size":  322872,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Site d'Atterrissage de Toba",
-        "src": "maps/Exprimes/Site d'Atterrissage de Toba.png",
-        "size": 268283,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Site d\u0027Atterrissage de Toba",
+        "src":  "maps/Exprimes/Site d\u0027Atterrissage de Toba.png",
+        "size":  268283,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Station du Mont Ormond",
-        "src": "maps/Exprimes/Station du Mont Ormond.png",
-        "size": 262891,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Station du Mont Ormond",
+        "src":  "maps/Exprimes/Station du Mont Ormond.png",
+        "size":  262891,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Terrain de la Casse",
-        "src": "maps/Exprimes/Terrain de la Casse.png",
-        "size": 269196,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Terrain de la Casse",
+        "src":  "maps/Exprimes/Terrain de la Casse.png",
+        "size":  269196,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Vallon des Tourments",
-        "src": "maps/Exprimes/Vallon des Tourments.png",
-        "size": 243966,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Vallon des Tourments",
+        "src":  "maps/Exprimes/Vallon des Tourments.png",
+        "size":  243966,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "École Maternelle de Badham",
-        "src": "maps/Exprimes/École Maternelle de Badham.png",
-        "size": 272806,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "École Maternelle de Badham",
+        "src":  "maps/Exprimes/École Maternelle de Badham.png",
+        "size":  272806,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "École Primaire Midwich",
-        "src": "maps/Exprimes/ecole_primaire_midwich.gif",
-        "size": 675271,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "École Primaire Midwich",
+        "src":  "maps/Exprimes/ecole_primaire_midwich.gif",
+        "size":  675271,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Épave du Nostromo",
-        "src": "maps/Exprimes/Épave du Nostromo.png",
-        "size": 244000,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Épave du Nostromo",
+        "src":  "maps/Exprimes/Épave du Nostromo.png",
+        "size":  244000,
+        "v":  2
     },
     {
-        "creator": "Exprimes",
-        "name": "Étable en Ruine",
-        "src": "maps/Exprimes/Étable en Ruine.png",
-        "size": 227533,
-        "v": 2
+        "creator":  "Exprimes",
+        "name":  "Étable en Ruine",
+        "src":  "maps/Exprimes/Étable en Ruine.png",
+        "size":  227533,
+        "v":  2
     }
 ]
