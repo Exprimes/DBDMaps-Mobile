@@ -50,8 +50,8 @@
     },
     {
         "creator":  "Exprimes",
-        "name":  "Centre de Traitement Léry",
-        "src":  "maps/Exprimes/Centre de Traitement Léry.png",
+        "name":  "Centre de Traitement",
+        "src":  "maps/Exprimes/Centre de Traitement.png",
         "size":  542383,
         "v":  3
     },
@@ -68,13 +68,6 @@
         "src":  "maps/Exprimes/Chapelle du Père Campbell.png",
         "size":  237979,
         "v":  2
-    },
-    {
-        "creator":  "Exprimes",
-        "name":  "Complexe Souterrain Hawkins",
-        "src":  "maps/Exprimes/Complexe Souterrain Hawkins.png",
-        "size":  474821,
-        "v":  3
     },
     {
         "creator":  "Exprimes",
@@ -159,6 +152,13 @@
         "src":  "maps/Exprimes/La Place Dévastée.png",
         "size":  254693,
         "v":  2
+    },
+    {
+        "creator":  "Exprimes",
+        "name":  "Le Complexe Souterrain",
+        "src":  "maps/Exprimes/Le Complexe Souterrain.png",
+        "size":  474821,
+        "v":  3
     },
     {
         "creator":  "Exprimes",

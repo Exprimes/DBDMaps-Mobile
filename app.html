@@ -742,10 +742,9 @@
       { name: "Atelier Misérable", creator: "Exprimes", src: "maps/Exprimes/Atelier Misérable.png" },
       { name: "Cabane du Sang", creator: "Exprimes", src: "maps/Exprimes/Cabane du Sang.png" },
       { name: "Cellier Sinistre", creator: "Exprimes", src: "maps/Exprimes/Cellier Sinistre.png" },
-      { name: "Centre de Traitement Léry", creator: "Exprimes", src: "maps/Exprimes/Centre de Traitement Léry.png" },
+      { name: "Centre de Traitement", creator: "Exprimes", src: "maps/Exprimes/Centre de Traitement.png" },
       { name: "Champs Pourris", creator: "Exprimes", src: "maps/Exprimes/Champs Pourris.png" },
       { name: "Chapelle du Père Campbell", creator: "Exprimes", src: "maps/Exprimes/Chapelle du Père Campbell.png" },
-      { name: "Complexe Souterrain Hawkins", creator: "Exprimes", src: "maps/Exprimes/Complexe Souterrain Hawkins.png" },
       { name: "Dernière Demeure d'Azarov", creator: "Exprimes", src: "maps/Exprimes/Dernière Demeure d'Azarov.png" },
       { name: "École Maternelle de Badham", creator: "Exprimes", src: "maps/Exprimes/École Maternelle de Badham.png" },
       { name: "École Primaire Midwich", creator: "Exprimes", src: "maps/Exprimes/École Primaire Midwich.png" },
@@ -762,6 +761,7 @@
       { name: "La Ferme Thompson", creator: "Exprimes", src: "maps/Exprimes/La Ferme Thompson.png" },
       { name: "La Maison Maternelle", creator: "Exprimes", src: "maps/Exprimes/La Maison Maternelle.png" },
       { name: "La Place Dévastée", creator: "Exprimes", src: "maps/Exprimes/La Place Dévastée.png" },
+      { name: "Le Complexe Souterrain", creator: "Exprimes", src: "maps/Exprimes/Le Complexe Souterrain.png" },
       { name: "Le Jeu", creator: "Exprimes", src: "maps/Exprimes/Le Jeu.png" },
       { name: "Le Pâle Rose", creator: "Exprimes", src: "maps/Exprimes/Le Pâle Rose.png" },
       { name: "Le Temple de Purgation", creator: "Exprimes", src: "maps/Exprimes/Le Temple de Purgation.png" },
@@ -793,7 +793,7 @@
 
     function isObsoleteMap(name) {
       const c = cleanStr(name);
-      return c.includes("rpdeast") || c.includes("rpdwest") || c.includes("rpdest") || c.includes("rpdouest") || c === "rpd";
+      return c.includes("rpdeast") || c.includes("rpdwest") || c.includes("rpdest") || c.includes("rpdouest") || c === "rpd" || c === "centredetraitementlery" || c === "complexesouterrainhawkins";
     }
 
     // Charger les cartes sauvegardées / synchronisées dynamiquement
